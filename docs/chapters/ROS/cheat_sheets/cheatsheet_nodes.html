@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Computational graph &mdash; ROS Notes 0.5.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ROS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Computational graph</a><ul>
+<li><a class="reference internal" href="#topics-and-messages">Topics and messages</a><ul>
+<li><a class="reference internal" href="#publisher">Publisher</a></li>
+<li><a class="reference internal" href="#subscriber">Subscriber</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#services">Services</a><ul>
+<li><a class="reference internal" href="#service-server">Service server</a></li>
+<li><a class="reference internal" href="#service-client">Service client</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#actionlib">actionlib</a><ul>
+<li><a class="reference internal" href="#action-server">Action server</a></li>
+<li><a class="reference internal" href="#action-client">Action client</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ROS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Computational graph</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/chapters/ROS/cheat_sheets/cheatsheet_nodes.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="computational-graph">
+<h1>Computational graph<a class="headerlink" href="#computational-graph" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="topics-and-messages">
+<h2>Topics and messages<a class="headerlink" href="#topics-and-messages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="publisher">
+<h3>Publisher<a class="headerlink" href="#publisher" title="Permalink to this headline">¶</a></h3>
+<p>ros::NodeHandle node_obj;
+ros::Publisher number_publisher =  node_obj.advertise&lt;std_msgs::Int32&gt;(“/numbers”,10);
+std_msgs::Int32 msg;
+number_publisher.publish(msg);</p>
+</div>
+<div class="section" id="subscriber">
+<h3>Subscriber<a class="headerlink" href="#subscriber" title="Permalink to this headline">¶</a></h3>
+<p>ros::NodeHandle node_obj;
+ros::Subscriber number_subscriber = node_obj.subscribe(“/numbers”,10,number_callback);
+//This is an infinite loop in which the node will wait in this step
+ros::spin();</p>
+<p>//Callback of the topic /numbers
+void number_callback(const std_msgs::Int32::ConstPtr&amp; msg)
+{</p>
+<blockquote>
+<div>ROS_INFO(“Recieved  [%d]”,msg-&gt;data);</div></blockquote>
+<p>}</p>
+</div>
+</div>
+<div class="section" id="services">
+<h2>Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h2>
+<p>demo_srv.srv</p>
+<blockquote>
+<div># Request
+string in
+—
+# Response
+string out</div></blockquote>
+<div class="section" id="service-server">
+<h3>Service server<a class="headerlink" href="#service-server" title="Permalink to this headline">¶</a></h3>
+<p>#include “ros/ros.h”
+#include “mastering_ros_demo_pkg/demo_srv.h”
+#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+using namespace std;</p>
+<p>ros::init(argc, argv, “demo_service_server”);
+ros::NodeHandle n;</p>
+<p>ros::ServiceServer service = n.advertiseService(“demo_service”, demo_service_callback);
+ros::spin();</p>
+<dl class="docutils">
+<dt>bool demo_service_callback(mastering_ros_demo_pkg::demo_srv::Request  &amp;req,</dt>
+<dd><blockquote class="first">
+<div>mastering_ros_demo_pkg::demo_srv::Response &amp;res) {</div></blockquote>
+<p>std::stringstream ss;
+ss &lt;&lt; “Received  Here”;
+res.out = ss.str();</p>
+<p class="last">ROS_INFO(“From Client  [%s], Server says [%s]”,req.in.c_str(),res.out.c_str());
+return true;</p>
+</dd>
+</dl>
+<p>}</p>
+</div>
+<div class="section" id="service-client">
+<h3>Service client<a class="headerlink" href="#service-client" title="Permalink to this headline">¶</a></h3>
+<p>ros::NodeHandle n;
+ros::Rate loop_rate(10);</p>
+<p>ros::ServiceClient client = n.serviceClient&lt;mastering_ros_demo_pkg::demo_srv&gt;(“demo_service”);</p>
+<p>mastering_ros_demo_pkg::demo_srv srv;
+std::stringstream ss;
+ss &lt;&lt; “Sending from Here”;
+srv.request.in = ss.str();</p>
+<dl class="docutils">
+<dt>if (client.call(srv)){</dt>
+<dd>ROS_INFO(“From Client  [%s], Server says [%s]”,srv.request.in.c_str(),srv.response.out.c_str());</dd>
+</dl>
+<p>}
+else{</p>
+<blockquote>
+<div>ROS_ERROR(“Failed to call service”);
+return 1;</div></blockquote>
+<p>}</p>
+</div>
+</div>
+<div class="section" id="actionlib">
+<h2>actionlib<a class="headerlink" href="#actionlib" title="Permalink to this headline">¶</a></h2>
+<p>Demo_action.action</p>
+<p>#goal definition
+int32 count
+—
+#result definition
+int32 final_count
+—
+#feedback
+int32 current_number</p>
+<div class="section" id="action-server">
+<h3>Action server<a class="headerlink" href="#action-server" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="action-client">
+<h3>Action client<a class="headerlink" href="#action-client" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Abed.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.5.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

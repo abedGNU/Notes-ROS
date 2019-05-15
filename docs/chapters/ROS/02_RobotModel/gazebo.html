@@ -1,0 +1,267 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. Gazebo &mdash; ROS Notes 0.5.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="6. The Stage Robot Simulator" href="stage.html" />
+    <link rel="prev" title="4. Rviz" href="rviz.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ROS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">ROS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_inst/tutorials.html">1. ROS Tutorials and wiki</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_inst/ros.html">2. ROS basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_inst/workspace.html">3. ROS worksapce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/pub-sub.html">4. Publisher-Subscriber</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/msg.html">5. Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/parameters.html">6. Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/launchfiles.html">7. Launch files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/serv-cli.html">8. Service and Client</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Robot 3D model and visualization</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="urdf.html">1. URDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xarco.html">2. Xarco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tf.html">3. TF Transform Frame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rviz.html">4. Rviz</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stage.html">6. The Stage Robot Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="vrep.html">7. V-Rep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="openrave.html">8. OpenRAVE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="morse.html">9. Morse</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Actions and plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/action.html">1. ActionServer and ActionClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/nodelets.html">2. Nodelet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/plugin.html">3. Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/rvizplugin.html">4. Rviz plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/gazeboplugin.html">5. Gazebo plugins</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS and Embedded systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/arduino.html">1. Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/tivac.html">2. TIVA C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/stm32.html">3. STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/raspberrypi.html">4. Raspberry pi</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS and computer vision</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/cameras.html">1. Cameras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/opencv.html">2. OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/pcl.html">3. Point Cloud Library (PCL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/visp.html">4. Visual Servoing Platform library ViSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/cimg.html">5. The CImg Library</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ROS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>5. Gazebo</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/chapters/ROS/02_RobotModel/gazebo.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gazebo">
+<h1>5. Gazebo<a class="headerlink" href="#gazebo" title="Permalink to this headline">¶</a></h1>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="stage.html" class="btn btn-neutral float-right" title="6. The Stage Robot Simulator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="rviz.html" class="btn btn-neutral" title="4. Rviz" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Abed.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.5.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

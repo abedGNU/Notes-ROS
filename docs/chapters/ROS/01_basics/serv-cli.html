@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>8. Service and Client &mdash; ROS Notes 0.5.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="9. ActionServer and ActionClient" href="action.html" />
+    <link rel="prev" title="7. Launch files" href="launchfiles.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ROS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">ROS</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../00_inst/tutorials.html">1. ROS Tutorials and wiki</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_inst/ros.html">2. ROS basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_inst/workspace.html">3. ROS worksapce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pub-sub.html">4. Publisher-Subscriber</a></li>
+<li class="toctree-l1"><a class="reference internal" href="msg.html">5. Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">6. Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="launchfiles.html">7. Launch files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">8. Service and Client</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simple-service-and-client">8.1. Simple Service and Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#user-messages">8.2. User messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#services">8.3. Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#service-node">8.3.1. Service node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#client-node">8.3.2. Client node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-the-package">8.3.3. Build the package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="action.html">9. ActionServer and ActionClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodelets.html">10. Nodelet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plugin.html">11. Plugin</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS and Embedded systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/arduino.html">1. Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/tivac.html">2. TIVA C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/stm32.html">3. STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/raspberrypi.html">4. Raspberry pi</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS and computer vision</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/cameras.html">1. Cameras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/opencv.html">2. OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/pcl.html">3. Point Cloud Library (PCL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/visp.html">4. Visual Servoing Platform library ViSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/cimg.html">5. The CImg Library</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ROS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>8. Service and Client</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/chapters/ROS/01_basics/serv-cli.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="service-and-client">
+<h1>8. Service and Client<a class="headerlink" href="#service-and-client" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simple-service-and-client">
+<h2>8.1. Simple Service and Client<a class="headerlink" href="#simple-service-and-client" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="user-messages">
+<h2>8.2. User messages<a class="headerlink" href="#user-messages" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="services">
+<h2>8.3. Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="service-node">
+<h3>8.3.1. Service node<a class="headerlink" href="#service-node" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">listing/tutorial/add_two_ints_server.cpp</span></code></p>
+</div>
+<div class="section" id="client-node">
+<h3>8.3.2. Client node<a class="headerlink" href="#client-node" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">listing/tutorial/add_two_ints_client.cpp</span></code></p>
+</div>
+<div class="section" id="build-the-package">
+<h3>8.3.3. Build the package<a class="headerlink" href="#build-the-package" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">caption=CmakeLists</span> <span class="pre">with</span> <span class="pre">new</span> <span class="pre">messages</span> <span class="pre">and</span> <span class="pre">services,</span> <span class="pre">label=lstCMakeLists</span></code> <code class="docutils literal notranslate"><span class="pre">listing/tutorial/CMakeLists.txt</span></code></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="action.html" class="btn btn-neutral float-right" title="9. ActionServer and ActionClient" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="launchfiles.html" class="btn btn-neutral" title="7. Launch files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Abed.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.5.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

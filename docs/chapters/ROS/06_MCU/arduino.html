@@ -1,0 +1,330 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Arduino &mdash; ROS Notes 0.5.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="2. TIVA C" href="tivac.html" />
+    <link rel="prev" title="10. Plugin" href="../01_basics/plugin.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ROS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">ROS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_inst/ros.html">1. ROS basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_inst/workspace.html">2. ROS worksapce</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/pub-sub.html">3. Publisher-Subscriber</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/msg.html">4. Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/parameters.html">5. Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/launchfiles.html">6. Launch files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/serv-cli.html">7. Service and Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/action.html">8. ActionServer and ActionClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/nodelets.html">9. Nodelet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/plugin.html">10. Plugin</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS and Embedded systems</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Arduino</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">1.1. Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#test-the-installation">1.1.1. Test the installation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tivac.html">2. TIVA C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stm32.html">3. STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raspberrypi.html">4. Raspberry pi</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS and computer vision</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/cameras.html">1. Cameras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/opencv.html">2. OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/pcl.html">3. Point Cloud Library (PCL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/visp.html">4. Visual Servoing Platform library ViSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/cimg.html">5. The CImg Library</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ROS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>1. Arduino</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/chapters/ROS/06_MCU/arduino.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="arduino">
+<h1>1. Arduino<a class="headerlink" href="#arduino" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<h2>1.1. Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Installing the rosserial metapackage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ros</span><span class="o">-</span><span class="n">kinetic</span><span class="o">-</span><span class="n">rosserial</span>
+</pre></div>
+</div>
+<p>Install the rosserial-arduino client package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ros</span><span class="o">-</span><span class="n">kinetic</span><span class="o">-</span><span class="n">rosserial</span><span class="o">-</span><span class="n">arduino</span>
+</pre></div>
+</div>
+<p>Clone</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ros</span><span class="o">-</span><span class="n">drivers</span><span class="o">/</span><span class="n">rosserial</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Download and install <a class="reference external" href="https://www.arduino.cc">Arduino</a> IDE.</p>
+<p>To use the serial port without root permissions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyACM</span><span class="o">*</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB</span><span class="o">*</span>
+<span class="o">//</span>
+<span class="n">sudo</span> <span class="n">usermod</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">G</span> <span class="n">dialout</span> <span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>In Arduino IDE set the Sketchbook location to <code class="docutils literal notranslate"><span class="pre">/home/robot/arduino</span></code>. Arduino should create a folder called libraries inside it.</p>
+<p>Open the terminal and navigate to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">robot</span><span class="o">/</span><span class="n">arduino</span><span class="o">/</span><span class="n">libraries</span>
+</pre></div>
+</div>
+<p>Don’t forget the dot <code class="docutils literal notranslate"><span class="pre">.</span></code> at the end of the following commands, it indicate current directory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosrun</span> <span class="n">rosserial_arduino</span> <span class="n">make_libraries</span><span class="o">.</span><span class="n">py</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>After these steps, you should find the <code class="docutils literal notranslate"><span class="pre">ros_lib</span></code> voice in the examples of Arduino IDE.</p>
+<div class="section" id="test-the-installation">
+<h3>1.1.1. Test the installation<a class="headerlink" href="#test-the-installation" title="Permalink to this headline">¶</a></h3>
+<p>Open the example <code class="docutils literal notranslate"><span class="pre">string_test</span></code> from <a class="reference external" href="https://www.arduino.cc">Arduino</a> IDE:</p>
+<div class="highlight-default notranslate" id="lststring-test"><div class="highlight"><pre><span></span><span class="c1">#include &lt;ros.h&gt;</span>
+<span class="c1">#include &lt;std_msgs/String.h&gt;</span>
+
+<span class="n">ros</span><span class="p">::</span><span class="n">NodeHandle</span>  <span class="n">nh</span><span class="p">;</span>
+
+<span class="n">std_msgs</span><span class="p">::</span><span class="n">String</span> <span class="n">str_msg</span><span class="p">;</span>
+<span class="n">ros</span><span class="p">::</span><span class="n">Publisher</span> <span class="n">chatter</span><span class="p">(</span><span class="s2">&quot;chatter&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">str_msg</span><span class="p">);</span>
+
+<span class="n">char</span> <span class="n">hello</span><span class="p">[</span><span class="mi">19</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;chapter8_tutorials&quot;</span><span class="p">;</span>
+
+<span class="n">void</span> <span class="n">setup</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">nh</span><span class="o">.</span><span class="n">initNode</span><span class="p">();</span>
+  <span class="n">nh</span><span class="o">.</span><span class="n">advertise</span><span class="p">(</span><span class="n">chatter</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">loop</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">str_msg</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">hello</span><span class="p">;</span>
+  <span class="n">chatter</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">str_msg</span> <span class="p">);</span>
+  <span class="n">nh</span><span class="o">.</span><span class="n">spinOnce</span><span class="p">();</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Upload the sketch to the arduino board.</p>
+<p>Open 3 different terminals and launch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roscore</span>
+
+<span class="n">rosrun</span> <span class="n">rosserial_python</span> <span class="n">serial_node</span><span class="o">.</span><span class="n">py</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyACM0</span>
+
+<span class="n">rostopic</span> <span class="n">echo</span> <span class="n">chatter</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../../_downloads/858de0fc9c57d0602f84815a7d387533/string_test.ino"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">string_test.ino</span></code></a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tivac.html" class="btn btn-neutral float-right" title="2. TIVA C" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../01_basics/plugin.html" class="btn btn-neutral" title="10. Plugin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Abed.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.5.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

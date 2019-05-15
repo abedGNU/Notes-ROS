@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. ROS worksapce &mdash; ROS Notes 0.5.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4. Publisher-Subscriber" href="../01_basics/pub-sub.html" />
+    <link rel="prev" title="2. ROS basics" href="ros.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ROS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">ROS</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorials.html">1. ROS Tutorials and wiki</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ros.html">2. ROS basics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. ROS worksapce</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#catkin-workspace">3.1. Catkin workspace</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#catkin">3.1.1. catkin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#catkin-tools">3.1.2. catkin tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#catkin-simple">3.1.3. catkin simple</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wokspace-subdirectory">3.1.4. Wokspace subdirectory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-variable">3.1.5. Environment variable</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-ros-package">3.2. Creating a ROS Package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">3.2.1. Catkin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3.2.2. catkin_tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">3.2.3. catkin_simple</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/pub-sub.html">4. Publisher-Subscriber</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/msg.html">5. Messages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/parameters.html">6. Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/launchfiles.html">7. Launch files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/serv-cli.html">8. Service and Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/action.html">9. ActionServer and ActionClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/nodelets.html">10. Nodelet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/plugin.html">11. Plugin</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS and Embedded systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/arduino.html">1. Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/tivac.html">2. TIVA C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/stm32.html">3. STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06_MCU/raspberrypi.html">4. Raspberry pi</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS and computer vision</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/cameras.html">1. Cameras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/opencv.html">2. OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/pcl.html">3. Point Cloud Library (PCL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/visp.html">4. Visual Servoing Platform library ViSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_CV/cimg.html">5. The CImg Library</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ROS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>3. ROS worksapce</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/chapters/ROS/00_inst/workspace.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ros-worksapce">
+<h1>3. ROS worksapce<a class="headerlink" href="#ros-worksapce" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="catkin-workspace">
+<h2>3.1. Catkin workspace<a class="headerlink" href="#catkin-workspace" title="Permalink to this headline">¶</a></h2>
+<p>Like Arduino, Eclispe and other IDE, to develop in ROS you need to create a workspace.
+A workspace mainly contain the source code folder and the compiled code and eventually other folders and files.</p>
+<p>In order to create a workspace in ROS, <code class="docutils literal notranslate"><span class="pre">catkin</span></code> tools are used. These tools automate some job in Cmake.
+There are 3 ways to use catkin. The first one is the most used. The second one <code class="docutils literal notranslate"><span class="pre">catkin_tools</span></code> is under development. The third one <code class="docutils literal notranslate"><span class="pre">catkin_simple</span></code> can be used in order to simplify the CMakeLists.txt file.</p>
+<p>Before using the catkin commands, you need to create a workspace directory and a <code class="docutils literal notranslate"><span class="pre">src</span></code> subdirectory. You can call the workspace as you want. The directories can be created using the <code class="docutils literal notranslate"><span class="pre">terminal</span></code> or using the desktop utilities. Usually we will use the terminal. If you want to use an IDE, <code class="docutils literal notranslate"><span class="pre">RoboWare</span> <span class="pre">Studio</span></code> and <code class="docutils literal notranslate"><span class="pre">Qt</span></code> plugin <code class="docutils literal notranslate"><span class="pre">ros_qtc_plugin</span></code> are good choices.</p>
+<div class="section" id="catkin">
+<h3>3.1.1. catkin<a class="headerlink" href="#catkin" title="Permalink to this headline">¶</a></h3>
+<p>We will create a workspace called <code class="docutils literal notranslate"><span class="pre">catkin_ws</span></code> and a subdirectory <code class="docutils literal notranslate"><span class="pre">src</span></code> in the home directory of linux. The following code will create a folder called <code class="docutils literal notranslate"><span class="pre">src</span></code>. The <code class="docutils literal notranslate"><span class="pre">-p</span></code> option will create the folder <code class="docutils literal notranslate"><span class="pre">catkin_ws</span></code> if it doesn’t exist</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/</span><span class="n">catkin_ws</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+<p>Navigate to the <code class="docutils literal notranslate"><span class="pre">src</span></code> folder and initialize the workspace. The command <code class="docutils literal notranslate"><span class="pre">catkin_init_workspace</span></code> should be executed within the folder <code class="docutils literal notranslate"><span class="pre">src</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">catkin_ws</span><span class="o">/</span><span class="n">src</span>
+<span class="n">catkin_init_workspace</span>
+</pre></div>
+</div>
+<p>Go back to the workspace directory and type <code class="docutils literal notranslate"><span class="pre">`catkin_make`</span></code> in order to build the source code</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">catkin_ws</span><span class="o">/</span>
+<span class="n">catkin_make</span>
+</pre></div>
+</div>
+<p>In order to build the worksapce after any modification of the source code, the <code class="docutils literal notranslate"><span class="pre">catkin_make</span></code> command should be run from the workspace directory.</p>
+</div>
+<div class="section" id="catkin-tools">
+<h3>3.1.2. catkin tools<a class="headerlink" href="#catkin-tools" title="Permalink to this headline">¶</a></h3>
+<p>This is a python package that can be used to create and build a ROS workspace. It is not installed by default. Run the following commnad to install it</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">catkin</span><span class="o">-</span><span class="n">tools</span>
+</pre></div>
+</div>
+<p>The documentation of this package can be found:</p>
+<blockquote>
+<div><p><a class="reference external" href="https://github.com/catkin/catkin_tools">https://github.com/catkin/catkin_tools</a></p>
+<p><a class="reference external" href="http://catkin-tools.readthedocs.org/">http://catkin-tools.readthedocs.org/</a></p>
+</div></blockquote>
+<p>Once the workspace and src folders are created, to initilize the workspace run the command <code class="docutils literal notranslate"><span class="pre">catkin</span> <span class="pre">init</span></code> from the workspace directory not from the <code class="docutils literal notranslate"><span class="pre">src</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">catkin_ws</span><span class="o">/</span>
+<span class="n">catkin</span> <span class="n">init</span>
+</pre></div>
+</div>
+<p>To build the worksapce run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catkin</span> <span class="n">build</span>
+</pre></div>
+</div>
+<p>The command <code class="docutils literal notranslate"><span class="pre">catkin</span> <span class="pre">build</span></code> will initilize the workspace if it was not initilized by the <code class="docutils literal notranslate"><span class="pre">catkin</span> <span class="pre">init</span></code> command.
+The <code class="docutils literal notranslate"><span class="pre">catkin</span> <span class="pre">build</span></code> command can be run from any subdirectory of the workspace.</p>
+</div>
+<div class="section" id="catkin-simple">
+<h3>3.1.3. catkin simple<a class="headerlink" href="#catkin-simple" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="wokspace-subdirectory">
+<h3>3.1.4. Wokspace subdirectory<a class="headerlink" href="#wokspace-subdirectory" title="Permalink to this headline">¶</a></h3>
+<p>Once is build the workspace will contain the <code class="docutils literal notranslate"><span class="pre">src</span></code>, <code class="docutils literal notranslate"><span class="pre">build</span></code> and <code class="docutils literal notranslate"><span class="pre">devel</span></code> folders. These folders are create by all the prvious methods.</p>
+</div>
+<div class="section" id="environment-variable">
+<h3>3.1.5. Environment variable<a class="headerlink" href="#environment-variable" title="Permalink to this headline">¶</a></h3>
+<p>The catkin_make command is a convenience tool for working with catkin workspaces. Running it the first time in your workspace, it will create a CMakeLists.txt link in your ‘src’ folder. Additionally, if you look in your current directory you should now have a <code class="docutils literal notranslate"><span class="pre">build</span></code> and ‘devel’ folder. Inside the ‘devel’ folder you can see that there are now several setup.*sh files. Sourcing any of these files will overlay this workspace on top of your environment. To understand more about this see the general catkin documentation: catkin. Before continuing source your new setup.*sh file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// this will be valid only <span class="k">for</span> the opened terminal
+      <span class="nb">source</span> devel/setup.bash
+</pre></div>
+</div>
+<p>To make it permanent do the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;source ~/catkin_ws/devel/setup.bash&quot;</span> &gt;&gt; ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</pre></div>
+</div>
+<p>To make sure your workspace is properly overlayed by the setup script, make sure ROS_PACKAGE_PATH environment variable includes the directory you’re in.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="nv">$ROS_PACKAGE_PATH</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-a-ros-package">
+<h2>3.2. Creating a ROS Package<a class="headerlink" href="#creating-a-ros-package" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>3.2.1. Catkin<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// This is an example, <span class="k">do</span> not try to run this
+// catkin_create_pkg &lt;package_name&gt; <span class="o">[</span>depend1<span class="o">]</span> <span class="o">[</span>depend2<span class="o">]</span> <span class="o">[</span>depend3<span class="o">]</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/catkin_ws/src
+
+// create a package
+catkin_create_pkg beginner_tutorials std_msgs rospy roscpp
+
+// build all packages in the workspace
+<span class="nb">cd</span> ~/catkin_ws
+catkin_make
+
+//To add the workspace to your ROS environment you need to <span class="nb">source</span> the generated setup file
+. ~/catkin_ws/devel/setup.bash
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>3.2.2. catkin_tools<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id3">
+<h3>3.2.3. catkin_simple<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../01_basics/pub-sub.html" class="btn btn-neutral float-right" title="4. Publisher-Subscriber" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ros.html" class="btn btn-neutral" title="2. ROS basics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Abed.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.5.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

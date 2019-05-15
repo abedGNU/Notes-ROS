@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3D Modeling URDF &mdash; ROS Notes 0.5.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ROS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">3D Modeling URDF</a><ul>
+<li><a class="reference internal" href="#urdf">URDF</a></li>
+<li><a class="reference internal" href="#create-package">Create package</a></li>
+<li><a class="reference internal" href="#urdf-model">Urdf model</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ROS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>3D Modeling URDF</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/chapters/ROS/cheat_sheets/urdf.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="d-modeling-urdf">
+<h1>3D Modeling URDF<a class="headerlink" href="#d-modeling-urdf" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">joint_state_publisher</span></code>: This tool is very useful when designing robot models using URDF. This package contains a node called joint_state_publisher, which reads the robot model description, finds all joints, and publishes joint values to all nonfixed joints using GUI sliders. The user can interact with each robot joint using this tool and can visualize using RViz. While designing URDF, the user can verify the rotation and translation of each joint using this tool.</p>
+<p><code class="docutils literal notranslate"><span class="pre">robot_state_publisher</span></code>: This package reads the current robot joint states and publishes the 3D poses of each robot link using the kinematics tree build from the URDF. The 3D pose of the robot is published as the tf (transform) ROS. The tf ROS publishes the relationship between the coordinates frames of a robot.</p>
+<p><code class="docutils literal notranslate"><span class="pre">kdl_parser</span></code>: Kinematic and Dynamics Library (KDL) is an ROS package that contains parser tools to build a KDL tree from the URDF representation. The kinematic tree can be used to publish the joint states and also to forward and inverse the kinematics of the robot</p>
+<div class="section" id="urdf">
+<h2>URDF<a class="headerlink" href="#urdf" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">link</span></code>: The <code class="docutils literal notranslate"><span class="pre">link</span></code> tag represents a single link of a robot. Using this tag, we can model a robot link and its properties. The modeling includes the size, the shape, and the color, and it can even import a 3D mesh to represent the robot link. We can also provide the dynamic properties of the link, such as the inertial matrix and the collision properties.</p>
+<p>&lt;link name=”&lt;name of the link&gt;”&gt;
+&lt;inertial&gt;………..&lt;/inertial&gt;</p>
+<blockquote>
+<div>&lt;visual&gt; …………&lt;/visual&gt;
+&lt;collision&gt;……….&lt;/collision&gt;</div></blockquote>
+<p>&lt;/link&gt;</p>
+<p><code class="docutils literal notranslate"><span class="pre">joint</span></code>: The joint tag represents a robot joint. We can specify the kinematics and the dynamics of the joint, and set the limits of the joint movement and its velocity. The joint tag supports the different types of joints, such as revolute, continuous, prismatic, fixed, floating, and planar.</p>
+<dl class="docutils">
+<dt>&lt;joint name=”&lt;name of the joint&gt;”&gt;</dt>
+<dd><p class="first">&lt;parent link=”link1”/&gt;
+&lt;child link=”link2”/&gt;</p>
+<p class="last">&lt;calibration …. /&gt;
+&lt;dynamics damping …./&gt;
+&lt;limit effort …. /&gt;</p>
+</dd>
+</dl>
+<p>&lt;/joint&gt;</p>
+<p><code class="docutils literal notranslate"><span class="pre">gazebo</span></code>: This tag is used when we include the simulation parameters of the Gazebo simulator inside the URDF. We can use this tag to include gazebo plugins, gazebo material properties, and so on. The following shows an example using gazebo tags:</p>
+<dl class="docutils">
+<dt>&lt;gazebo reference=”link_1”&gt;</dt>
+<dd>&lt;material&gt;Gazebo/Black&lt;/material&gt;</dd>
+</dl>
+<p>&lt;/gazebo&gt;</p>
+</div>
+<div class="section" id="create-package">
+<h2>Create package<a class="headerlink" href="#create-package" title="Permalink to this headline">¶</a></h2>
+<p>catkin_create_pkg mastering_ros_robot_description_pkg roscpp tf geometry_msgs urdf rviz xacro</p>
+<p>sudo apt-get install ros-kinetic-urdf
+sudo apt-get install ros-kinetic-xacro</p>
+</div>
+<div class="section" id="urdf-model">
+<h2>Urdf model<a class="headerlink" href="#urdf-model" title="Permalink to this headline">¶</a></h2>
+<p>pan_tilt.urdf</p>
+<p>&lt;?xml version=”1.0”?&gt;
+&lt;robot name=”pan_tilt”&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;link name=”base_link”&gt;</dt>
+<dd><dl class="first docutils">
+<dt>&lt;visual&gt;</dt>
+<dd><p class="first">&lt;geometry&gt;
+&lt;cylinder length=”0.01” radius=”0.2”/&gt;
+&lt;/geometry&gt;
+&lt;origin rpy=”0 0 0” xyz=”0 0 0”/&gt;
+&lt;material name=”yellow”&gt;</p>
+<blockquote>
+<div>&lt;color rgba=”1 1 0 1”/&gt;</div></blockquote>
+<p class="last">&lt;/material&gt;</p>
+</dd>
+</dl>
+<p class="last">&lt;/visual&gt;</p>
+</dd>
+</dl>
+<p>&lt;/link&gt;
+&lt;joint name=”pan_joint” type=”revolute”&gt;</p>
+<blockquote>
+<div>&lt;parent link=”base_link”/&gt;
+&lt;child link=”pan_link”/&gt;
+&lt;origin xyz=”0 0 0.1”/&gt;
+&lt;axis xyz=”0 0 1” /&gt;</div></blockquote>
+<p>&lt;/joint&gt;
+&lt;link name=”pan_link”&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;visual&gt;</dt>
+<dd><p class="first">&lt;geometry&gt;
+&lt;cylinder length=”0.4” radius=”0.04”/&gt;
+&lt;/geometry&gt;
+&lt;origin rpy=”0 0 0” xyz=”0 0 0.09”/&gt;
+&lt;material name=”red”&gt;</p>
+<blockquote>
+<div>&lt;color rgba=”0 0 1 1”/&gt;</div></blockquote>
+<p class="last">&lt;/material&gt;</p>
+</dd>
+</dl>
+<p>&lt;/visual&gt;</p>
+</div></blockquote>
+<p>&lt;/link&gt;
+&lt;joint name=”tilt_joint” type=”revolute”&gt;</p>
+<blockquote>
+<div>&lt;parent link=”pan_link”/&gt;
+&lt;child link=”tilt_link”/&gt;
+&lt;origin xyz=”0 0 0.2”/&gt;
+&lt;axis xyz=”0 1 0” /&gt;</div></blockquote>
+<p>&lt;/joint&gt;
+&lt;link name=”tilt_link”&gt;</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>&lt;visual&gt;</dt>
+<dd>&lt;geometry&gt;</dd>
+</dl>
+</div></blockquote>
+<dl class="docutils">
+<dt>&lt;cylinder length=”0.4” radius=”0.04”/&gt;</dt>
+<dd><blockquote class="first">
+<div><p>&lt;/geometry&gt;
+&lt;origin rpy=”0 1.5 0” xyz=”0 0 0”/&gt;
+&lt;material name=”green”&gt;</p>
+<blockquote>
+<div>&lt;color rgba=”1 0 0 1”/&gt;</div></blockquote>
+<p>&lt;/material&gt;</p>
+</div></blockquote>
+<p class="last">&lt;/visual&gt;</p>
+</dd>
+</dl>
+<p>&lt;/link&gt;</p>
+</div></blockquote>
+<p>&lt;/robot&gt;</p>
+<p>check_urdf pan_tilt.urdf</p>
+<p>urdf_to_graphiz pan_tilt.urdf</p>
+<p>rosrun xacro xacro pan_tilt.xacro –inorder &gt; pan_tilt_generated.urdf</p>
+<p>The transmission tag relates a joint to an actuator. It defines the type of transmission that we are using in a particular joint, as well as the type of motor and its parameters. It also defines the type of hardware interface we use when we interface with the ROS controllers.</p>
+<dl class="docutils">
+<dt>&lt;xacro:macro name=”transmission_block” params=”joint_name”&gt;</dt>
+<dd><dl class="first docutils">
+<dt>&lt;transmission name=”tran1”&gt;</dt>
+<dd><p class="first">&lt;type&gt;transmission_interface/SimpleTransmission&lt;/type&gt;
+&lt;joint name=”${joint_name}”&gt;</p>
+<blockquote>
+<div>&lt;hardwareInterface&gt;PositionJointInterface&lt;/hardwareInterface&gt;</div></blockquote>
+<p>&lt;/joint&gt;
+&lt;actuator name=”motor1”&gt;</p>
+<blockquote>
+<div>&lt;hardwareInterface&gt;PositionJointInterface&lt;/hardwareInterface&gt;
+&lt;mechanicalReduction&gt;1&lt;/mechanicalReduction&gt;</div></blockquote>
+<p class="last">&lt;/actuator&gt;</p>
+</dd>
+</dl>
+<p class="last">&lt;/transmission&gt;</p>
+</dd>
+</dl>
+<p>&lt;/xacro:macro&gt;</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Abed.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.5.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
