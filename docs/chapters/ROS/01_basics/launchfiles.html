@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>7. Launch files &mdash; ROS Notes 0.5.0 documentation</title>
+  <title>7. Launch files &mdash; ROS Notes 0.6.0 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.5
+                0.6
               </div>
             
           
@@ -93,11 +93,35 @@
 <li class="toctree-l1"><a class="reference internal" href="pub-sub.html">4. Publisher-Subscriber</a></li>
 <li class="toctree-l1"><a class="reference internal" href="msg.html">5. Messages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="parameters.html">6. Parameters</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Launch files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Launch files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-launch-file">7.1. Basic launch file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters">7.2. Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#substitution-args">7.3. Substitution args</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#namespaces">7.4. Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#including-files">7.5. Including files</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="serv-cli.html">8. Service and Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="action.html">9. ActionServer and ActionClient</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nodelets.html">10. Nodelet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plugin.html">11. Plugin</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Robot 3D model and visualization</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/rviz.html">1. Rviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/urdf.html">2. Unified Robot Description Format URDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/xarco.html">3. Xarco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/tf.html">4. Transform Frame TF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/gazebo.html">5. Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/stage.html">6. The Stage Robot Simulator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/vrep.html">7. V-Rep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/openrave.html">8. OpenRAVE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/morse.html">9. Morse</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Actions and plugins</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/action.html">1. ActionServer and ActionClient</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/nodelets.html">2. Nodelet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/plugin.html">3. Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/rvizplugin.html">4. Rviz plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/gazeboplugin.html">5. Gazebo plugins</a></li>
 </ul>
 <p class="caption"><span class="caption-text">ROS and Embedded systems</span></p>
 <ul>
@@ -178,7 +202,85 @@
            <div itemprop="articleBody">
             
   <div class="section" id="launch-files">
-<h1>7. Launch files<a class="headerlink" href="#launch-files" title="Permalink to this headline">¶</a></h1>
+<h1>7. <a class="reference external" href="http://wiki.ros.org/roslaunch">Launch</a> files<a class="headerlink" href="#launch-files" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="basic-launch-file">
+<h2>7.1. Basic launch file<a class="headerlink" href="#basic-launch-file" title="Permalink to this headline">¶</a></h2>
+<p>Ros launch <code class="docutils literal notranslate"><span class="pre">talker_listener.launch</span></code> file that execute 2 nodes:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">talker_listener.launch</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;listener&quot;</span> <span class="na">pkg=</span><span class="s">&quot;roscpp_tutorials&quot;</span> <span class="na">type=</span><span class="s">&quot;listener_node&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;talker&quot;</span> <span class="na">pkg=</span><span class="s">&quot;roscpp_tutorials&quot;</span> <span class="na">type=</span><span class="s">&quot;talker_node&quot;</span> <span class="na">output=</span><span class="s">&quot;screen&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>The previous launch file execute one instance of the <code class="docutils literal notranslate"><span class="pre">listener_node</span></code> with a the name <code class="docutils literal notranslate"><span class="pre">listener</span></code>, and one instance of the executable <code class="docutils literal notranslate"><span class="pre">talker_node</span></code> with the name <code class="docutils literal notranslate"><span class="pre">talker</span></code>, that are part of the package <code class="docutils literal notranslate"><span class="pre">roscpp_tutorials</span></code>.
+So the <code class="docutils literal notranslate"><span class="pre">type</span></code> id the name of the compiled node. The <code class="docutils literal notranslate"><span class="pre">name</span></code> is the name of the instance of the node (process).
+The tag <code class="docutils literal notranslate"><span class="pre">output</span></code> have value <code class="docutils literal notranslate"><span class="pre">screen</span></code>, it tell ROS to show the outputs of the nodes in the terminal.
+If <code class="docutils literal notranslate"><span class="pre">roscore</span></code> is not running, <code class="docutils literal notranslate"><span class="pre">roslaunch</span></code> execute it.</p>
+<p>Open a terminal and run the <a class="reference external" href="http://wiki.ros.org/roslaunch">roslaunch</a> command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">roscpp_tutorials</span> <span class="n">talker_listener</span><span class="o">.</span><span class="n">launch</span>
+</pre></div>
+</div>
+<p>Of course the package <code class="docutils literal notranslate"><span class="pre">roscpp_tutorials</span></code> should be in your active workspace or installed on your computer. Or you substitute the package name and node names with your own.</p>
+<p>Clone the repository in your workspace</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ros</span><span class="o">/</span><span class="n">ros_tutorials</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Or install it</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ros</span><span class="o">-</span><span class="n">kinetic</span><span class="o">-</span><span class="n">roscpp</span><span class="o">-</span><span class="n">tutorials</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="parameters">
+<h2>7.2. Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h2>
+<p>You can also set parameters on the Parameter Server. These parameters will be stored on the Parameter Server before any nodes are launched.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;somestring1&quot;</span> <span class="na">value=</span><span class="s">&quot;bar&quot;</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- force to string instead of integer --&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;somestring2&quot;</span> <span class="na">value=</span><span class="s">&quot;10&quot;</span> <span class="na">type=</span><span class="s">&quot;str&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;someinteger1&quot;</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span> <span class="na">type=</span><span class="s">&quot;int&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;someinteger2&quot;</span> <span class="na">value=</span><span class="s">&quot;2&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;somefloat1&quot;</span> <span class="na">value=</span><span class="s">&quot;3.14159&quot;</span> <span class="na">type=</span><span class="s">&quot;double&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;somefloat2&quot;</span> <span class="na">value=</span><span class="s">&quot;3.0&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- you can set parameters in child namespaces --&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;wg/childparam&quot;</span> <span class="na">value=</span><span class="s">&quot;a child namespace parameter&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- upload the contents of a file to the server --&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;configfile&quot;</span> <span class="na">textfile=</span><span class="s">&quot;$(find roslaunch)/example.xml&quot;</span> <span class="nt">/&gt;</span>
+  <span class="c">&lt;!-- upload the contents of a file as base64 binary to the server --&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;binaryfile&quot;</span> <span class="na">binfile=</span><span class="s">&quot;$(find roslaunch)/example.xml&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="substitution-args">
+<h2>7.3. Substitution args<a class="headerlink" href="#substitution-args" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">launch_file.launch</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span> <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;gui&quot;</span> <span class="na">default=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;foo&quot;</span> <span class="na">value=</span><span class="s">&quot;$(arg my_foo)&quot;</span> <span class="nt">/&gt;</span>
+
+ <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;add_two_ints_server&quot;</span> <span class="na">pkg=</span><span class="s">&quot;beginner_tutorials&quot;</span> <span class="na">type=</span><span class="s">&quot;add_two_ints_server&quot;</span> <span class="nt">/&gt;</span>
+ <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;add_two_ints_client&quot;</span> <span class="na">pkg=</span><span class="s">&quot;beginner_tutorials&quot;</span> <span class="na">type=</span><span class="s">&quot;add_two_ints_client&quot;</span> <span class="na">args=</span><span class="s">&quot;$(arg a) $(arg b)&quot;</span> <span class="nt">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Execution example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">beginner_tutorials</span> <span class="n">launch_file</span><span class="o">.</span><span class="n">launch</span> <span class="n">a</span><span class="p">:</span><span class="o">=</span><span class="mi">1</span> <span class="n">b</span><span class="p">:</span><span class="o">=</span><span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="namespaces">
+<h2>7.4. Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="including-files">
+<h2>7.5. Including files<a class="headerlink" href="#including-files" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -223,7 +325,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.5.0',
+            VERSION:'0.6.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
