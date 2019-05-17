@@ -24,9 +24,9 @@ copyright = u'2018, Abed'
 author = u'Abed'
 
 # The short X.Y version
-version = u'0.7'
+version = u'0.8'
 # The full version, including alpha/beta/rc tags
-release = u'0.7.0'
+release = u'0.8.1'
 
 today_fmt=strftime("%Y-%m-%d  %H:%M:%S", gmtime() )
 

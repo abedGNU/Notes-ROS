@@ -6,87 +6,89 @@ ROS_ Robot Operating System
 
   |today|
 
-.. warning:: Work in progress
 .. toctree::
-  :caption: ROS
+  :caption: Getting started
   :maxdepth: 1
   :numbered:
 
-  chapters/ROS/00_inst/tutorials
+  chapters/ROS/00_getting_started/tutorials
+  chapters/ROS/00_getting_started/ros
+  chapters/ROS/00_getting_started/workspace
 
-  chapters/ROS/00_inst/ros
-  chapters/ROS/00_inst/workspace
-  chapters/ROS/01_basics/pub-sub
-  chapters/ROS/01_basics/msg
-  chapters/ROS/01_basics/parameters
-  chapters/ROS/01_basics/launchfiles
-  chapters/ROS/01_basics/serv-cli
+.. toctree::
+  :caption: Nodes and topics
+  :maxdepth: 1
+  :numbered:
 
-  chapters/ROS/01_basics/tf
+  chapters/ROS/01_nodes_topics/pub-sub
+  chapters/ROS/01_nodes_topics/launchfiles
+  chapters/ROS/01_nodes_topics/turtlesim
 
-.. warning:: Work in progress
 .. toctree::
   :caption: Robot 3D model
   :maxdepth: 1
   :numbered:
 
-  chapters/ROS/02_RobotModel/urdf
-  chapters/ROS/02_RobotModel/xarco
-
-  chapters/ROS/02_RobotModel/mobilerobot
-  chapters/ROS/02_RobotModel/robotarm
-  chapters/ROS/02_RobotModel/industrial-robots
-
-.. warning:: Work in progress
+  chapters/ROS/10_robot_modeling/simulators
+  chapters/ROS/10_robot_modeling/urdf
+  chapters/ROS/10_robot_modeling/xarco
 
 .. toctree::
-  :caption: Simulation
+  :caption: Mobile robot modeling and simulation
   :maxdepth: 1
   :numbered:
 
-  chapters/ROS/03_sim/rviz
-  chapters/ROS/03_sim/gazebo
-  chapters/ROS/03_sim/ros_control
+  chapters/ROS/15_mobile_robot/mobilerobot
+  chapters/ROS/15_mobile_robot/gazebo
+  chapters/ROS/15_mobile_robot/ros_control
 
-  chapters/ROS/03_sim/morse
-  chapters/ROS/03_sim/vrep
-
-  chapters/ROS/03_sim/stagesim
-  chapters/ROS/03_sim/openrave
-
-.. warning:: Work in progress
 .. toctree::
-  :caption: Actions and plugins
+  :caption: Robot arm modeling and simulation
   :maxdepth: 1
   :numbered:
 
-  chapters/ROS/05_ActionPlugin/action
-  chapters/ROS/05_ActionPlugin/nodelets
-  chapters/ROS/05_ActionPlugin/plugin
-  chapters/ROS/05_ActionPlugin/rvizplugin
-  chapters/ROS/05_ActionPlugin/gazeboplugin
+  chapters/ROS/20_robot_arm/robotarm
+  chapters/ROS/20_robot_arm/industrial-robots
 
-.. warning:: Work in progress
 .. toctree::
-  :caption: ROS and Embedded systems
+  :caption: ROS computational graph
   :maxdepth: 1
   :numbered:
 
-  chapters/ROS/06_MCU/arduino.rst
-  chapters/ROS/06_MCU/tivac.rst
-  chapters/ROS/06_MCU/stm32.rst
-  chapters/ROS/06_MCU/raspberrypi.rst
+  chapters/ROS/25_computation_graph/serv-cli
+  chapters/ROS/25_computation_graph/parameters
+  chapters/ROS/25_computation_graph/action
 
-.. warning:: Work in progress
 .. toctree::
-  :caption: ROS and computer vision
+  :caption: Extending ROS
   :maxdepth: 1
   :numbered:
 
-  chapters/ROS/10_CV/cameras
-  chapters/ROS/10_CV/opencv
-  chapters/ROS/10_CV/pcl
-  chapters/ROS/10_CV/visp
-  chapters/ROS/10_CV/cimg
+  chapters/ROS/30_plugins/plugin
+  chapters/ROS/30_plugins/nodelets
+  chapters/ROS/30_plugins/rqt_plugins
+  chapters/ROS/30_plugins/rvizplugin
+  chapters/ROS/30_plugins/gazeboplugin
+
+.. toctree::
+  :caption: Embedded systems
+  :maxdepth: 1
+  :numbered:
+
+  chapters/ROS/50_MCU/arduino
+  chapters/ROS/50_MCU/tivac
+  chapters/ROS/50_MCU/stm32
+  chapters/ROS/50_MCU/raspberrypi
+
+.. toctree::
+  :caption: Computer vision
+  :maxdepth: 1
+  :numbered:
+
+  chapters/ROS/60_CV/cameras
+  chapters/ROS/60_CV/opencv
+  chapters/ROS/60_CV/pcl
+  chapters/ROS/60_CV/visp
+  chapters/ROS/60_CV/cimg
 
 .. _ROS: http://www.ros.org/
