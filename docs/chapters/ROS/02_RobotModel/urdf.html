@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2. Unified Robot Description Format URDF &mdash; ROS Notes 0.6.0 documentation</title>
+  <title>1. Unified Robot Description Format URDF &mdash; ROS Notes 0.7.0 documentation</title>
   
 
   
@@ -31,8 +31,8 @@
   <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="3. Xarco" href="xarco.html" />
-    <link rel="prev" title="1. Rviz" href="rviz.html" /> 
+    <link rel="next" title="2. Xacro" href="xarco.html" />
+    <link rel="prev" title="9. Transform Frame TF" href="../01_basics/tf.html" /> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.6
+                0.7
               </div>
             
           
@@ -95,34 +95,42 @@
 <li class="toctree-l1"><a class="reference internal" href="../01_basics/parameters.html">6. Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_basics/launchfiles.html">7. Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_basics/serv-cli.html">8. Service and Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/tf.html">9. Transform Frame TF</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Robot 3D model and visualization</span></p>
+<p class="caption"><span class="caption-text">Robot 3D model</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="rviz.html">1. Rviz</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Unified Robot Description Format URDF</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#launch-file">2.1. Launch file</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#urdf-basics">2.2. URDF basics</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#robot">2.2.1. Robot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#link">2.2.2. Link</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#joint">2.2.3. Joint</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#tansmission">2.2.4. Tansmission</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#other-properties">2.2.5. Other properties</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Unified Robot Description Format URDF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#launch-file">1.1. Launch file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#urdf-basics">1.2. URDF basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#robot">1.2.1. Robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#link">1.2.2. Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#joint">1.2.3. Joint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tansmission">1.2.4. Tansmission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gazebo">1.2.5. Gazebo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-properties">1.2.6. Other properties</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#complete-robot-model-example">2.3. Complete Robot model example</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#joint-and-frame-definition">2.3.1. Joint and frame definition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#visual-aspect-and-mesh">2.3.2. Visual aspect and mesh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-robot-model-example">1.3. Complete Robot model example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#joint-and-frame-definition">1.3.1. Joint and frame definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-urdf-model">1.3.2. Check URDF model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visual-aspect-and-mesh">1.3.3. Visual aspect and mesh</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="xarco.html">3. Xarco</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tf.html">4. Transform Frame TF</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gazebo.html">5. Gazebo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stage.html">6. The Stage Robot Simulator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vrep.html">7. V-Rep</a></li>
-<li class="toctree-l1"><a class="reference internal" href="openrave.html">8. OpenRAVE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="morse.html">9. Morse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xarco.html">2. Xacro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mobilerobot.html">3. Mobile robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robotarm.html">4. Robot arm model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="industrial-robots.html">5. Industrial robots</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/rviz.html">1. Rviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/gazebo.html">2. Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/ros_control.html">3. Ros control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/morse.html">4. Morse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/vrep.html">5. V-Rep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/openrave.html">6. OpenRAVE</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Actions and plugins</span></p>
 <ul>
@@ -191,7 +199,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-      <li>2. Unified Robot Description Format URDF</li>
+      <li>1. Unified Robot Description Format URDF</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -211,7 +219,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="unified-robot-description-format-urdf">
-<h1>2. Unified Robot Description Format <a class="reference external" href="wiki.ros.org/urdf">URDF</a><a class="headerlink" href="#unified-robot-description-format-urdf" title="Permalink to this headline">¶</a></h1>
+<h1>1. Unified Robot Description Format <a class="reference external" href="wiki.ros.org/urdf">URDF</a><a class="headerlink" href="#unified-robot-description-format-urdf" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>Refer to <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials">URDF-Tutorials</a> and clone the <a class="reference external" href="https://github.com/ros/urdf_tutorial">URDF-Tutorials-repo</a></p>
@@ -219,11 +227,23 @@
 </pre></div>
 </div>
 </div>
+<p>In this chapter we will create a model of Epson SCARA Robot.</p>
+<p>In the workspace/src create a folder called Robots, where we will put all robot description packages.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">workspace</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">Robots</span>
+
+<span class="n">catkin_create_pkg</span> <span class="n">epson_g3_description</span> <span class="n">geometry_msgs</span> <span class="n">urdf</span> <span class="n">rviz</span> <span class="n">xacro</span>
+
+<span class="n">cd</span> <span class="n">epson_g3_description</span>
+
+<span class="n">mkdir</span> <span class="n">urdf</span> <span class="n">scripts</span> <span class="n">rviz</span>
+</pre></div>
+</div>
+<p>Back to the workspace and compile the packages.</p>
 <div class="section" id="launch-file">
-<h2>2.1. Launch file<a class="headerlink" href="#launch-file" title="Permalink to this headline">¶</a></h2>
+<h2>1.1. Launch file<a class="headerlink" href="#launch-file" title="Permalink to this headline">¶</a></h2>
 <p>The following launch file is taken from <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials">URDF-Tutorials</a>. It have different parameters that allow it to execute different robot models.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">display.launch from urdf_tutorial</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">display.launch from urdf_tutorial</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;model&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find urdf_tutorial)/urdf/01-myfirst.urdf&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;gui&quot;</span> <span class="na">default=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
@@ -255,15 +275,15 @@
 </pre></div>
 </div>
 <p>Rviz files can be deleted from the launch file if you don’t have them. They can be created from rviz later. If there is no rviz file, Rviz will not show the frames neither the robot neither select the right <code class="docutils literal notranslate"><span class="pre">Fixed</span> <span class="pre">Frame</span></code>.</p>
-<p>We will use this launch file:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">display.launch</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<p>We will modify launch file from the tutorial in the followingway:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">display.launch</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
 
-  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;model&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find urdf_tutorial)/urdf/scara.urdf&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;model&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find epson_g3_description)/urdf/scara.urdf&quot;</span><span class="nt">/&gt;</span>
   <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;gui&quot;</span> <span class="na">default=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
 
-  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;robot_description&quot;</span> <span class="na">textfile=</span><span class="s">&quot;$(find urdf_tutorial)/urdf/scara.urdf&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;robot_description&quot;</span> <span class="na">textfile=</span><span class="s">&quot;$(find epson_g3_description)/urdf/scara.urdf&quot;</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;use_gui&quot;</span> <span class="na">value=</span><span class="s">&quot;$(arg gui)&quot;</span><span class="nt">/&gt;</span>
 
   <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="na">pkg=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="na">type=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="nt">/&gt;</span>
@@ -274,13 +294,18 @@
 </pre></div>
 </div>
 </div>
-<p><a class="reference download internal" download="" href="../../../_downloads/f798ddd4a7512e40b219b59bd495212b/display.launch"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">display.launch</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/a0129ecf3ad31bf73a04966c8b46c9b3/display.launch"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">display.launch</span></code></a></p>
+<p>Basically I change the package name, the urdf default name and delete the reference for rviz configuration file. We will back later to rviz configuration files.</p>
+<p>I create also a scripts folder where I will create some bash file to help me executing nodes. Simply in the bash script launch.sh there is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">epson_g3_description</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span> <span class="n">model</span><span class="p">:</span><span class="o">=</span><span class="s1">&#39;$(find epson_g3_description)/urdf/scara.urdf&#39;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="urdf-basics">
-<h2>2.2. URDF basics<a class="headerlink" href="#urdf-basics" title="Permalink to this headline">¶</a></h2>
+<h2>1.2. URDF basics<a class="headerlink" href="#urdf-basics" title="Permalink to this headline">¶</a></h2>
 <p>URDF is an xml file that describe the geometry of a robot. URDF is a tree structure with one root link. The measuring units are meters and radians.</p>
 <div class="section" id="robot">
-<h3>2.2.1. Robot<a class="headerlink" href="#robot" title="Permalink to this headline">¶</a></h3>
+<h3>1.2.1. Robot<a class="headerlink" href="#robot" title="Permalink to this headline">¶</a></h3>
 <p>A robot is composed mainly from links, and joints.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;robot</span> <span class="na">name=</span><span class="s">&quot;robot_name&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;link&gt;</span>  <span class="nt">&lt;/link&gt;</span>
@@ -293,7 +318,7 @@
 </div>
 </div>
 <div class="section" id="link">
-<h3>2.2.2. Link<a class="headerlink" href="#link" title="Permalink to this headline">¶</a></h3>
+<h3>1.2.2. Link<a class="headerlink" href="#link" title="Permalink to this headline">¶</a></h3>
 <p>The link element describes a rigid body with an inertia, visual features, and collision properties.</p>
 <div class="figure align-center" id="figlink" style="width: 400px">
 <img alt="../../../_images/link.png" src="../../../_images/link.png" />
@@ -332,7 +357,7 @@ Its <code class="docutils literal notranslate"><span class="pre">origin</span></
 <p>The <code class="docutils literal notranslate"><span class="pre">inertial</span></code> tag is need if the model is loaded in a simulator with physics engine. Its <code class="docutils literal notranslate"><span class="pre">origin</span></code> is the pose of the inertial reference frame, relative to the link reference frame. The origin of the inertial reference frame needs to be at the center of gravity. The axes of the inertial reference frame do not need to be aligned with the principal axes of the inertia.</p>
 </div>
 <div class="section" id="joint">
-<h3>2.2.3. Joint<a class="headerlink" href="#joint" title="Permalink to this headline">¶</a></h3>
+<h3>1.2.3. Joint<a class="headerlink" href="#joint" title="Permalink to this headline">¶</a></h3>
 <p>The joint describe the relative motion between two links. It can be <code class="docutils literal notranslate"><span class="pre">revolute</span></code>, <code class="docutils literal notranslate"><span class="pre">continuous</span></code>, <code class="docutils literal notranslate"><span class="pre">prismatic</span></code>, <code class="docutils literal notranslate"><span class="pre">fixed</span></code>, <code class="docutils literal notranslate"><span class="pre">floating</span></code>, <code class="docutils literal notranslate"><span class="pre">planar</span></code>.</p>
 <div class="figure align-center" id="figjoint" style="width: 400px">
 <img alt="../../../_images/joint.png" src="../../../_images/joint.png" />
@@ -376,7 +401,7 @@ Its <code class="docutils literal notranslate"><span class="pre">origin</span></
 </div>
 </div>
 <div class="section" id="tansmission">
-<h3>2.2.4. Tansmission<a class="headerlink" href="#tansmission" title="Permalink to this headline">¶</a></h3>
+<h3>1.2.4. Tansmission<a class="headerlink" href="#tansmission" title="Permalink to this headline">¶</a></h3>
 <p>Transmissions link actuators to joints and represents their mechanical coupling. The transmission element is an extension to the URDF robot description model that is used to describe the relationship between an actuator and a joint. This allows one to model concepts such as gear ratios and parallel linkages. A transmission transforms efforts/flow variables such that their product - power - remains constant. Multiple actuators may be linked to multiple joints through complex transmission.</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;transmission</span> <span class="na">name=</span><span class="s">&quot;tran1&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;type&gt;</span>transmission_interface/SimpleTransmission<span class="nt">&lt;/type&gt;</span>
@@ -394,15 +419,19 @@ Its <code class="docutils literal notranslate"><span class="pre">origin</span></
 </pre></div>
 </div>
 </div>
+<div class="section" id="gazebo">
+<h3>1.2.5. Gazebo<a class="headerlink" href="#gazebo" title="Permalink to this headline">¶</a></h3>
+<p>Gazebo can be add to different elements. Refer to the <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials">URDF-Tutorials</a> and <a class="reference external" href="http://www.gazebosim.org/">Gazebo</a> tutorials. In order to simulate the model correctly in <a class="reference external" href="http://www.gazebosim.org/">Gazebo</a> at least he <code class="docutils literal notranslate"><span class="pre">inertia</span></code> and <code class="docutils literal notranslate"><span class="pre">transmission</span></code> tags for all links should be defined.</p>
+</div>
 <div class="section" id="other-properties">
-<h3>2.2.5. Other properties<a class="headerlink" href="#other-properties" title="Permalink to this headline">¶</a></h3>
-<p>Properties like <code class="docutils literal notranslate"><span class="pre">gazebo</span></code>, <code class="docutils literal notranslate"><span class="pre">senor</span></code>, etc. will be described when needed. Refer to <a class="reference external" href="http://wiki.ros.org/urdf/XML">URDF-XML</a> and <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials">URDF-Tutorials</a> for more information.</p>
+<h3>1.2.6. Other properties<a class="headerlink" href="#other-properties" title="Permalink to this headline">¶</a></h3>
+<p>Refer to <a class="reference external" href="http://wiki.ros.org/urdf/XML">URDF-XML</a> and <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials">URDF-Tutorials</a> for more information.</p>
 </div>
 </div>
 <div class="section" id="complete-robot-model-example">
-<h2>2.3. Complete Robot model example<a class="headerlink" href="#complete-robot-model-example" title="Permalink to this headline">¶</a></h2>
+<h2>1.3. Complete Robot model example<a class="headerlink" href="#complete-robot-model-example" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="joint-and-frame-definition">
-<h3>2.3.1. Joint and frame definition<a class="headerlink" href="#joint-and-frame-definition" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.1. Joint and frame definition<a class="headerlink" href="#joint-and-frame-definition" title="Permalink to this headline">¶</a></h3>
 <p>We will define the 3D model of Epson Scara robot G3-251s. This robot have 4 links and 3 joints.
 On link is fixed, <code class="docutils literal notranslate"><span class="pre">base_link</span></code>. Two links rotate, we will call them link1 and link2. And the last link, link3, has translation motion.</p>
 <div class="figure align-center" id="figepsong3" style="width: 400px">
@@ -469,17 +498,30 @@ In zero position, all links open, the robot lie on the x axis of the base link. 
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_urdf</span> <span class="n">scara</span><span class="o">.</span><span class="n">urdf</span>
 </pre></div>
 </div>
-<p>Run the launch file from the urdf directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">urdf_tutorial</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span> <span class="n">model</span><span class="p">:</span><span class="o">=</span><span class="n">scara</span><span class="o">.</span><span class="n">urdf</span>
+<p>Run the launch file or run the script.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">epson_g3_description</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span>
 </pre></div>
 </div>
 <div class="figure align-center" id="figrvizscara" style="width: 700px">
 <img alt="../../../_images/scara.gif" src="../../../_images/scara.gif" />
 </div>
-<p><a class="reference download internal" download="" href="../../../_downloads/004a0499784f8fddfaab710f36176d4e/scara.urdf"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">scara.urdf</span></code></a></p>
+<p><a class="reference download internal" download="" href="../../../_downloads/8b178b757c5039b1d041570e48360eb5/scara.urdf"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">scara.urdf</span></code></a></p>
+</div>
+<div class="section" id="check-urdf-model">
+<h3>1.3.2. Check URDF model<a class="headerlink" href="#check-urdf-model" title="Permalink to this headline">¶</a></h3>
+<p>Navigato to urdf direcory then:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_urdf</span> <span class="n">scara</span><span class="o">.</span><span class="n">urdf</span>
+</pre></div>
+</div>
+<p>If there are no errors, you will see the parents childs tree that define the robot.</p>
+<p>The command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">urdf_to_graphiz</span> <span class="n">scara</span><span class="o">.</span><span class="n">urdf</span>
+</pre></div>
+</div>
+<p>will create 2 files: <code class="docutils literal notranslate"><span class="pre">scara.gv</span></code> and <code class="docutils literal notranslate"><span class="pre">scara.pdf</span></code>.</p>
 </div>
 <div class="section" id="visual-aspect-and-mesh">
-<h3>2.3.2. Visual aspect and mesh<a class="headerlink" href="#visual-aspect-and-mesh" title="Permalink to this headline">¶</a></h3>
+<h3>1.3.3. Visual aspect and mesh<a class="headerlink" href="#visual-aspect-and-mesh" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 </div>
@@ -492,10 +534,10 @@ In zero position, all links open, the robot lie on the x axis of the base link. 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="xarco.html" class="btn btn-neutral float-right" title="3. Xarco" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="xarco.html" class="btn btn-neutral float-right" title="2. Xacro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="rviz.html" class="btn btn-neutral" title="1. Rviz" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../01_basics/tf.html" class="btn btn-neutral" title="9. Transform Frame TF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -526,7 +568,7 @@ In zero position, all links open, the robot lie on the x axis of the base link. 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.6.0',
+            VERSION:'0.7.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

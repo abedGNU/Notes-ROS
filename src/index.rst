@@ -2,6 +2,11 @@
 ROS_ Robot Operating System
 ============================
 
+.. warning:: Work in progress
+
+  |today|
+
+.. warning:: Work in progress
 .. toctree::
   :caption: ROS
   :maxdepth: 1
@@ -17,25 +22,39 @@ ROS_ Robot Operating System
   chapters/ROS/01_basics/launchfiles
   chapters/ROS/01_basics/serv-cli
 
+  chapters/ROS/01_basics/tf
+
+.. warning:: Work in progress
 .. toctree::
-  :caption: Robot 3D model and visualization
+  :caption: Robot 3D model
   :maxdepth: 1
   :numbered:
-
-  chapters/ROS/02_RobotModel/rviz
 
   chapters/ROS/02_RobotModel/urdf
   chapters/ROS/02_RobotModel/xarco
 
-  chapters/ROS/02_RobotModel/tf
+  chapters/ROS/02_RobotModel/mobilerobot
+  chapters/ROS/02_RobotModel/robotarm
+  chapters/ROS/02_RobotModel/industrial-robots
 
-  chapters/ROS/02_RobotModel/gazebo
+.. warning:: Work in progress
 
-  chapters/ROS/02_RobotModel/stage
-  chapters/ROS/02_RobotModel/vrep
-  chapters/ROS/02_RobotModel/openrave
-  chapters/ROS/02_RobotModel/morse
+.. toctree::
+  :caption: Simulation
+  :maxdepth: 1
+  :numbered:
 
+  chapters/ROS/03_sim/rviz
+  chapters/ROS/03_sim/gazebo
+  chapters/ROS/03_sim/ros_control
+
+  chapters/ROS/03_sim/morse
+  chapters/ROS/03_sim/vrep
+
+  chapters/ROS/03_sim/stagesim
+  chapters/ROS/03_sim/openrave
+
+.. warning:: Work in progress
 .. toctree::
   :caption: Actions and plugins
   :maxdepth: 1
@@ -47,6 +66,7 @@ ROS_ Robot Operating System
   chapters/ROS/05_ActionPlugin/rvizplugin
   chapters/ROS/05_ActionPlugin/gazeboplugin
 
+.. warning:: Work in progress
 .. toctree::
   :caption: ROS and Embedded systems
   :maxdepth: 1
@@ -57,6 +77,7 @@ ROS_ Robot Operating System
   chapters/ROS/06_MCU/stm32.rst
   chapters/ROS/06_MCU/raspberrypi.rst
 
+.. warning:: Work in progress
 .. toctree::
   :caption: ROS and computer vision
   :maxdepth: 1

@@ -15,7 +15,7 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+from time import gmtime, strftime
 
 # -- Project information -----------------------------------------------------
 
@@ -24,10 +24,11 @@ copyright = u'2018, Abed'
 author = u'Abed'
 
 # The short X.Y version
-version = u'0.6'
+version = u'0.7'
 # The full version, including alpha/beta/rc tags
-release = u'0.6.0'
+release = u'0.7.0'
 
+today_fmt=strftime("%Y-%m-%d  %H:%M:%S", gmtime() )
 
 # -- General configuration ---------------------------------------------------
 

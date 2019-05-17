@@ -6,6 +6,21 @@ Unified Robot Description Format URDF_
 
     git clone https://github.com/ros/urdf_tutorial.git
 
+In this chapter we will create a model of Epson SCARA Robot.
+
+In the workspace/src create a folder called Robots, where we will put all robot description packages. ::
+
+  cd workspace/src/Robots
+
+  catkin_create_pkg epson_g3_description geometry_msgs urdf rviz xacro
+
+  cd epson_g3_description
+
+  mkdir urdf scripts rviz
+
+
+Back to the workspace and compile the packages.
+
 Launch file
 =============
 The following launch file is taken from URDF-Tutorials_. It have different parameters that allow it to execute different robot models.
@@ -46,17 +61,17 @@ In this case the file name is the same of the default value. So in this case it 
 
 Rviz files can be deleted from the launch file if you don't have them. They can be created from rviz later. If there is no rviz file, Rviz will not show the frames neither the robot neither select the right ``Fixed Frame``.
 
-We will use this launch file:
+We will modify launch file from the tutorial in the followingway:
 
 .. code-block:: xml
   :caption: display.launch
 
   <launch>
 
-    <arg name="model" default="$(find urdf_tutorial)/urdf/scara.urdf"/>
+    <arg name="model" default="$(find epson_g3_description)/urdf/scara.urdf"/>
     <arg name="gui" default="true" />
 
-    <param name="robot_description" textfile="$(find urdf_tutorial)/urdf/scara.urdf" />
+    <param name="robot_description" textfile="$(find epson_g3_description)/urdf/scara.urdf" />
     <param name="use_gui" value="$(arg gui)"/>
 
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
@@ -65,7 +80,14 @@ We will use this launch file:
 
   </launch>
 
-:download:`Download display.launch <code/snippets/display.launch>`
+:download:`Download display.launch <../../../code/Robots/epson_g3_description/launch/display.launch>`
+
+Basically I change the package name, the urdf default name and delete the reference for rviz configuration file. We will back later to rviz configuration files.
+
+I create also a scripts folder where I will create some bash file to help me executing nodes. Simply in the bash script launch.sh there is: ::
+
+   roslaunch epson_g3_description display.launch model:='$(find epson_g3_description)/urdf/scara.urdf'
+
 
 URDF basics
 ============
@@ -208,10 +230,14 @@ Transmissions link actuators to joints and represents their mechanical coupling.
 
   </transmission>
 
+Gazebo
+-------
+Gazebo can be add to different elements. Refer to the URDF-Tutorials_ and Gazebo_ tutorials. In order to simulate the model correctly in Gazebo_ at least he ``inertia`` and ``transmission`` tags for all links should be defined.
+
 Other properties
 -----------------
 
-Properties like ``gazebo``, ``senor``, etc. will be described when needed. Refer to URDF-XML_ and URDF-Tutorials_ for more information.
+Refer to URDF-XML_ and URDF-Tutorials_ for more information.
 
 Complete Robot model example
 ==============================
@@ -243,9 +269,6 @@ The mechanical drawing is shown below:
 .. figure:: images/scara/mech3.png
    :align: center
    :figwidth: 400px
-
-.. literalinclude:: code/string_test.ino
-  :name: lst
 
 We will define first the links without visual aspect. Then we define the joints. The relative positions of the joints are taken from the previous images.
 As we can see, we have 2 ``revolute`` joints and one ``prismatic``.
@@ -307,16 +330,30 @@ We can use the command ``check_urdf`` to check if the urdf file have errors: ::
 
   check_urdf scara.urdf
 
-Run the launch file from the urdf directory: ::
+Run the launch file or run the script. ::
 
-  roslaunch urdf_tutorial display.launch model:=scara.urdf
+  roslaunch epson_g3_description display.launch
 
 .. _figRvizScara:
 .. figure:: images/scara/scara.gif
    :align: center
    :figwidth: 700px
 
-:download:`Download scara.urdf <code/snippets/scara.urdf>`
+:download:`Download scara.urdf <../../../code/Robots/epson_g3_description/urdf/scara.urdf>`
+
+Check URDF model
+-------------------
+Navigato to urdf direcory then: ::
+
+  check_urdf scara.urdf
+
+If there are no errors, you will see the parents childs tree that define the robot.
+
+The command ::
+
+  urdf_to_graphiz scara.urdf
+
+will create 2 files: ``scara.gv`` and ``scara.pdf``.
 
 Visual aspect and mesh
 ------------------------
@@ -331,3 +368,5 @@ Visual aspect and mesh
 .. _robot_state_publisher: http://wiki.ros.org/robot_state_publisher
 .. _state_publisher: http://wiki.ros.org/robot_state_publisher/Tutorials
 .. _rviz: http://wiki.ros.org/rviz
+
+.. _Gazebo: http://www.gazebosim.org/

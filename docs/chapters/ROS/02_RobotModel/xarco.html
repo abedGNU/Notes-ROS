@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3. Xarco &mdash; ROS Notes 0.6.0 documentation</title>
+  <title>2. Xacro &mdash; ROS Notes 0.7.0 documentation</title>
   
 
   
@@ -31,8 +31,8 @@
   <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="4. Transform Frame TF" href="tf.html" />
-    <link rel="prev" title="2. Unified Robot Description Format URDF" href="urdf.html" /> 
+    <link rel="next" title="3. Mobile robot" href="mobilerobot.html" />
+    <link rel="prev" title="1. Unified Robot Description Format URDF" href="urdf.html" /> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                0.6
+                0.7
               </div>
             
           
@@ -95,18 +95,36 @@
 <li class="toctree-l1"><a class="reference internal" href="../01_basics/parameters.html">6. Parameters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_basics/launchfiles.html">7. Launch files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../01_basics/serv-cli.html">8. Service and Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_basics/tf.html">9. Transform Frame TF</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Robot 3D model and visualization</span></p>
+<p class="caption"><span class="caption-text">Robot 3D model</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="rviz.html">1. Rviz</a></li>
-<li class="toctree-l1"><a class="reference internal" href="urdf.html">2. Unified Robot Description Format URDF</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Xarco</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tf.html">4. Transform Frame TF</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gazebo.html">5. Gazebo</a></li>
-<li class="toctree-l1"><a class="reference internal" href="stage.html">6. The Stage Robot Simulator</a></li>
-<li class="toctree-l1"><a class="reference internal" href="vrep.html">7. V-Rep</a></li>
-<li class="toctree-l1"><a class="reference internal" href="openrave.html">8. OpenRAVE</a></li>
-<li class="toctree-l1"><a class="reference internal" href="morse.html">9. Morse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="urdf.html">1. Unified Robot Description Format URDF</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Xacro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#xacro-syntax">2.1. Xacro syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#property">2.1.1. Property</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#math">2.1.2. Math</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macro">2.1.3. Macro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example">2.1.4. Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#xacro-to-urdf">2.2. Xacro to urdf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scara-robot-with-xacro">2.3. Scara robot with xacro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#include-files">2.4. Include files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mobilerobot.html">3. Mobile robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="robotarm.html">4. Robot arm model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="industrial-robots.html">5. Industrial robots</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/rviz.html">1. Rviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/gazebo.html">2. Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/ros_control.html">3. Ros control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/morse.html">4. Morse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/vrep.html">5. V-Rep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03_sim/openrave.html">6. OpenRAVE</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Actions and plugins</span></p>
 <ul>
@@ -175,7 +193,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-      <li>3. Xarco</li>
+      <li>2. Xacro</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -194,9 +212,207 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="xarco">
-<h1>3. Xarco<a class="headerlink" href="#xarco" title="Permalink to this headline">¶</a></h1>
-<p>catkin_create_pkg robot_description_pkg roscpp tf geometry_msgs urdf rviz xacro</p>
+  <div class="section" id="xacro">
+<h1>2. Xacro<a class="headerlink" href="#xacro" title="Permalink to this headline">¶</a></h1>
+<p>Xacro is an Xml macro that introduce the use of macros in an urdf file. It allow the use of variables, math and macros.
+And let us divide the robot model in different files.</p>
+<div class="section" id="xacro-syntax">
+<h2>2.1. Xacro syntax<a class="headerlink" href="#xacro-syntax" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="property">
+<h3>2.1.1. Property<a class="headerlink" href="#property" title="Permalink to this headline">¶</a></h3>
+<p>Instead of defining constant values, we can use variables, called property in xacro.</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="nb">property</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;width&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;0.2&quot;</span> <span class="o">/&gt;</span>
+ <span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="nb">property</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;bodylen&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;0.6&quot;</span> <span class="o">/&gt;</span>
+
+ <span class="o">&lt;</span><span class="n">link</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;base_link&quot;</span><span class="o">&gt;</span>
+     <span class="o">&lt;</span><span class="n">visual</span><span class="o">&gt;</span>
+         <span class="o">&lt;</span><span class="n">geometry</span><span class="o">&gt;</span>
+             <span class="o">&lt;</span><span class="n">cylinder</span> <span class="n">radius</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{width}</span><span class="s2">&quot;</span> <span class="n">length</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{bodylen}</span><span class="s2">&quot;</span><span class="o">/&gt;</span>
+         <span class="o">&lt;/</span><span class="n">geometry</span><span class="o">&gt;</span>
+     <span class="o">&lt;/</span><span class="n">visual</span><span class="o">&gt;</span>
+ <span class="o">&lt;/</span><span class="n">link</span><span class="o">&gt;</span>
+
+<span class="n">In</span> <span class="n">the</span> <span class="n">previous</span> <span class="n">snippet</span> <span class="n">we</span> <span class="n">create</span> <span class="n">two</span> <span class="n">properties</span> <span class="k">with</span> <span class="n">default</span> <span class="n">values</span><span class="p">:</span> <span class="p">::</span>
+
+ <span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="nb">property</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;width&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;0.2&quot;</span> <span class="o">/&gt;</span>
+ <span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="nb">property</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;bodylen&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;0.6&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">geometry</span></code> tag, instead of using constant values, we assign the properties just defined to the radius and the length. Note the use of <code class="docutils literal notranslate"><span class="pre">${}</span></code>.</p>
+</div>
+<div class="section" id="math">
+<h3>2.1.2. Math<a class="headerlink" href="#math" title="Permalink to this headline">¶</a></h3>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">cylinder</span> <span class="n">radius</span><span class="o">=</span><span class="s2">&quot;${wheeldiam/2}&quot;</span> <span class="n">length</span><span class="o">=</span><span class="s2">&quot;0.1&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="n">origin</span> <span class="n">xyz</span><span class="o">=</span><span class="s2">&quot;${reflect*(width+.02)} 0 0.25&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="macro">
+<h3>2.1.3. Macro<a class="headerlink" href="#macro" title="Permalink to this headline">¶</a></h3>
+<p>Marco are piece of code that can be used as functions.</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="n">macro</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;default_origin&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">origin</span> <span class="n">xyz</span><span class="o">=</span><span class="s2">&quot;0 0 0&quot;</span> <span class="n">rpy</span><span class="o">=</span><span class="s2">&quot;0 0 0&quot;</span><span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">xacro</span><span class="p">:</span><span class="n">macro</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>When need the macro can be called by name:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="n">default_origin</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>When called, the macro content will placed where is called.</p>
+<p>Macros can accept also input parameters:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="n">macro</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;default_inertial&quot;</span> <span class="n">params</span><span class="o">=</span><span class="s2">&quot;mass&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">inertial</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">mass</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{mass}</span><span class="s2">&quot;</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="n">inertia</span> <span class="n">ixx</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="n">ixy</span><span class="o">=</span><span class="s2">&quot;0.0&quot;</span> <span class="n">ixz</span><span class="o">=</span><span class="s2">&quot;0.0&quot;</span>
+                 <span class="n">iyy</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="n">iyz</span><span class="o">=</span><span class="s2">&quot;0.0&quot;</span>
+                 <span class="n">izz</span><span class="o">=</span><span class="s2">&quot;1.0&quot;</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">inertial</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xacro</span><span class="p">:</span><span class="n">macro</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Can be called in this way:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="n">default_inertial</span> <span class="n">mass</span><span class="o">=</span><span class="s2">&quot;10&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>Macros input parameters can be also blocks or macros. When we need to pass a block as a parameter to another macro, we precede the parameter name with <code class="docutils literal notranslate"><span class="pre">*</span></code>.</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="n">macro</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;blue_shape&quot;</span> <span class="n">params</span><span class="o">=</span><span class="s2">&quot;name *shape&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">link</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;$</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">visual</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">geometry</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="n">insert_block</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;shape&quot;</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;/</span><span class="n">geometry</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">material</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="o">/&gt;</span>
+        <span class="o">&lt;/</span><span class="n">visual</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">collision</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">geometry</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="n">insert_block</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;shape&quot;</span> <span class="o">/&gt;</span>
+            <span class="o">&lt;/</span><span class="n">geometry</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">collision</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">link</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">xacro</span><span class="p">:</span><span class="n">macro</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The this snippet, we have 2 parameters. The first parameter <code class="docutils literal notranslate"><span class="pre">name</span></code> is a string, the second one <code class="docutils literal notranslate"><span class="pre">shape</span></code> is a block.</p>
+<p>A block is defined as follow:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="n">blue_shape</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;base_link&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">cylinder</span> <span class="n">radius</span><span class="o">=</span><span class="s2">&quot;.42&quot;</span> <span class="n">length</span><span class="o">=</span><span class="s2">&quot;.01&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">xacro</span><span class="p">:</span><span class="n">blue_shape</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The macro can be called ?????????????????:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="n">blue_shape</span> <span class="n">mass</span><span class="o">=</span><span class="s2">&quot;10&quot;</span> <span class="n">shape</span><span class="o">=</span><span class="s2">&quot;blue_shape&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example">
+<h3>2.1.4. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>Here is defined a macro called leg. As the model have two legs, in order to avoid duplicated code, we define a macro with two paramters,
+<code class="docutils literal notranslate"><span class="pre">prefix</span></code> that is part of the link and joint names. And <code class="docutils literal notranslate"><span class="pre">reflect</span></code> to define the position of the leg respect to the axis.</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;xacro:macro name=&quot;leg&quot; params=&quot;prefix reflect&quot;&gt;
+
+    &lt;link name=&quot;${prefix}_leg&quot;&gt;
+        &lt;visual&gt;
+            &lt;geometry&gt;
+                &lt;box size=&quot;${leglen} 0.1 0.2&quot;/&gt;
+            &lt;/geometry&gt;
+            &lt;origin xyz=&quot;0 0 -${leglen/2}&quot; rpy=&quot;0 ${pi/2} 0&quot;/&gt;
+            &lt;material name=&quot;white&quot;/&gt;
+        &lt;/visual&gt;
+
+        &lt;!-- call to default_inertial macro --&gt;
+        &lt;xacro:default_inertial mass=&quot;10&quot;/&gt;
+    &lt;/link&gt;
+
+    &lt;joint name=&quot;base_to_${prefix}_leg&quot; type=&quot;fixed&quot;&gt;
+        &lt;parent link=&quot;base_link&quot;/&gt;
+        &lt;child link=&quot;${prefix}_leg&quot;/&gt;
+        &lt;origin xyz=&quot;0 ${reflect*(width+.02)} 0.25&quot; /&gt;
+    &lt;/joint&gt;
+
+&lt;/xacro:macro&gt;
+
+&lt;!-- call to legl macro --&gt;
+&lt;xacro:leg prefix=&quot;right&quot; reflect=&quot;1&quot; /&gt;
+&lt;xacro:leg prefix=&quot;left&quot; reflect=&quot;-1&quot; /&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="xacro-to-urdf">
+<h2>2.2. Xacro to urdf<a class="headerlink" href="#xacro-to-urdf" title="Permalink to this headline">¶</a></h2>
+<p>Once an xacro file is defined it must be converted to urdf file in order to be used.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosrun</span> <span class="n">xacro</span> <span class="n">xacro</span> <span class="n">scara</span><span class="o">.</span><span class="n">xacro</span> <span class="o">--</span><span class="n">inorder</span> <span class="o">&gt;</span> <span class="n">scara_generated</span><span class="o">.</span><span class="n">urdf</span>
+</pre></div>
+</div>
+<p>The command can be integrated inside a launch file.</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;robot_description&quot;</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;$(find xacro)/xacro --inorder $(find epson_g3_description)/urdf/scara.xacro&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>Or better it can be parameterized:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;robot_description&quot;</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;$(find xacro)/xacro --inorder $(arg model)&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>We will defined a new launch file:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">launch</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">arg</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;pkg&quot;</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;epson_g3_description&quot;</span><span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="n">arg</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;model&quot;</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;$(find epson_g3_description)/urdf/scara.xacro&quot;</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">arg</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rvizconfig&quot;</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;$(find epson_g3_description)/rviz/urdf.rviz&quot;</span> <span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="n">arg</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;gui&quot;</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;true&quot;</span> <span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;robot_description&quot;</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;$(find xacro)/xacro --inorder $(arg model)&quot;</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">param</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;use_gui&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;$(arg gui)&quot;</span><span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="n">node</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;joint_state_publisher&quot;</span> <span class="n">pkg</span><span class="o">=</span><span class="s2">&quot;joint_state_publisher&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;joint_state_publisher&quot;</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">node</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;robot_state_publisher&quot;</span> <span class="n">pkg</span><span class="o">=</span><span class="s2">&quot;robot_state_publisher&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;state_publisher&quot;</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="n">node</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;rviz&quot;</span> <span class="n">pkg</span><span class="o">=</span><span class="s2">&quot;rviz&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;rviz&quot;</span> <span class="n">args</span><span class="o">=</span><span class="s2">&quot;-d $(arg rvizconfig)&quot;</span> <span class="n">required</span><span class="o">=</span><span class="s2">&quot;true&quot;</span> <span class="o">/&gt;</span>
+<span class="o">&lt;/</span><span class="n">launch</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="../../../_downloads/2bfc319614320190ce829e165e09bf9e/display3.launch"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">display3.launch</span></code></a></p>
+</div>
+<div class="section" id="scara-robot-with-xacro">
+<h2>2.3. Scara robot with xacro<a class="headerlink" href="#scara-robot-with-xacro" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference download internal" download="" href="../../../_downloads/95f215758d2ecbca50c250568b48a9bd/scara.xacro"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">scara.xacro</span></code></a></p>
+</div>
+<div class="section" id="include-files">
+<h2>2.4. Include files<a class="headerlink" href="#include-files" title="Permalink to this headline">¶</a></h2>
+<p>When the robot model is complex, it is convenient to divide the definition in different files. Suppose we have a modile robot. We can create at least 2 files. One file to define the wheel and the other one the robot, where the wheel file will be included.</p>
+<p>Let’ create a file called <code class="docutils literal notranslate"><span class="pre">wheel.xacro</span></code>, where we define different marcos and properties.</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;robot name=&quot;wheel&quot; xmlns:xacro=&quot;http://www.ros.org/wiki/xacro&quot;&gt;
+
+  &lt;!-- Wheels --&gt;
+  &lt;xacro:property name=&quot;wheel_radius&quot; value=&quot;0.04&quot; /&gt;
+  &lt;xacro:property name=&quot;wheel_height&quot; value=&quot;0.02&quot; /&gt;
+  &lt;xacro:property name=&quot;wheel_mass&quot; value=&quot;2.5&quot; /&gt; &lt;!-- in kg--&gt;
+
+  &lt;xacro:macro name=&quot;cylinder_inertia&quot; params=&quot;m r h&quot;&gt;
+    &lt;inertia  ixx=&quot;${m*(3*r*r+h*h)/12}&quot; ixy = &quot;0&quot; ixz = &quot;0&quot;
+              iyy=&quot;${m*(3*r*r+h*h)/12}&quot; iyz = &quot;0&quot;
+              izz=&quot;${m*r*r/2}&quot; /&gt;
+  &lt;/xacro:macro&gt;
+
+   &lt;xacro:macro name=&quot;wheel&quot; params=&quot;fb lr parent translateX translateY flipY&quot;&gt;
+    &lt;!-- other stuff --&gt;
+  &lt;/xacro:macro&gt;
+
+&lt;/robot&gt;
+</pre></div>
+</div>
+<p>This file can be included in other xacro file:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">xacro</span><span class="p">:</span><span class="n">include</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;$(find package_name)/urdf/wheel.xacro&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>And the macro <code class="docutils literal notranslate"><span class="pre">wheel</span></code> defined in the file <code class="docutils literal notranslate"><span class="pre">wheel.xarco</span></code> can be called:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- Wheel Definitions --&gt;
+&lt;wheel fb=&quot;front&quot; lr=&quot;right&quot; parent=&quot;base_link&quot; translateX=&quot;0&quot; translateY=&quot;0.5&quot; flipY=&quot;1&quot;/&gt;
+&lt;wheel fb=&quot;front&quot; lr=&quot;left&quot; parent=&quot;base_link&quot; translateX=&quot;0&quot; translateY=&quot;-0.5&quot; flipY=&quot;1&quot;/&gt;
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -207,10 +423,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="tf.html" class="btn btn-neutral float-right" title="4. Transform Frame TF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mobilerobot.html" class="btn btn-neutral float-right" title="3. Mobile robot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="urdf.html" class="btn btn-neutral" title="2. Unified Robot Description Format URDF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="urdf.html" class="btn btn-neutral" title="1. Unified Robot Description Format URDF" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -241,7 +457,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'0.6.0',
+            VERSION:'0.7.0',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
