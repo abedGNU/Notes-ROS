@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ROS basics &mdash; ROS Notes 0.9.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ROS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Nodes and topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../01_nodes_topics/pub-sub.html">1. Publisher-Subscriber</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_nodes_topics/launchfiles.html">2. Launch files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01_nodes_topics/turtlesim.html">3. Turtlesim</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Robot 3D model</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/simulators.html">1. Simulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/urdf.html">2. Unified Robot Description Format URDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/xarco.html">3. Xacro</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Mobile robot modeling and simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../15_mobile_robot/mobilerobot.html">1. Mobile robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_mobile_robot/gazebo.html">2. Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_mobile_robot/ros_control.html">3. Ros control</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Robot arm modeling and simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../20_robot_arm/robotarm.html">1. Robot arm model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20_robot_arm/industrial-robots.html">2. Industrial robots</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS computational graph</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/serv-cli.html">1. Service and Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/parameters.html">2. Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/action.html">3. ActionServer and ActionClient</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Extending ROS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/plugin.html">1. Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/nodelets.html">2. Nodelet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/rqt_plugins.html">3. Rqt plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/rvizplugin.html">4. Rviz plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/gazeboplugin.html">5. Gazebo plugins</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Embedded systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/arduino.html">1. Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/tivac.html">2. TIVA C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/stm32.html">3. STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/raspberrypi.html">4. Raspberry pi</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Computer vision</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../60_CV/cameras.html">1. Cameras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_CV/opencv.html">2. OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_CV/pcl.html">3. Point Cloud Library (PCL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_CV/visp.html">4. Visual Servoing Platform library ViSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_CV/cimg.html">5. The CImg Library</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ROS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>ROS basics</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/chapters/ROS/00_getting_sarted/ros.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ros-basics">
+<h1>ROS basics<a class="headerlink" href="#ros-basics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id1">
+<h2>ROS basics<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>In this section we see the basic concepts in order to create a simple package containing two nodes.
+Nodes are programs, a package is a collection of programs. ROS is based on nodes, that are programs that communicate with each others, send messages via topics. A topic is the bus where a message is sent.</p>
+<p>The master, that can be run by <code class="docutils literal notranslate"><span class="pre">`rosrun`</span></code>, provides naming and registration services to the rest of nodes in the ROS system. When a node publish an information, using a message structure, it publish it on a topic. A node must subscribe to a topic in order to read that information. The master track publishers and subscribers.</p>
+<p>Messages are data types or data structures, one can use ROS messages, std_msgs, or create new one. User defined messages are stored in files with .msg extensions in the msg folder in the src folder of the workspace.</p>
+<p>Topics are only one way buses, it mean if a node publish a topic, it doesn’t wait an answer. If a node need to receive a reply from another node, services should be used.</p>
+<p>Node source files are stored in src, user messages are stored in msg folder, services are stored in srv folder.</p>
+<p>Tutorial examples can be find in /opt/ros/kinetic/share/rsopy_tutorial or roscpp_tutorial.</p>
+<p>On the website of ROS, in the section wiki you can find clear and well explained tutorials about the basics.</p>
+<p>The following two tutorial can be found on <a class="reference external" href="https://github.com/ros/catkin_tutorials.git">https://github.com/ros/catkin_tutorials.git</a></p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo sh -c <span class="s1">&#39;echo &quot;deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main&quot; &gt; /etc/apt/sources.list.d/ros-latest.list&#39;</span>
+
+// key <span class="k">for</span> kinectic
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+sudo apt-get update
+sudo apt-get install ros-kinetic-desktop-full
+sudo rosdep init
+rosdep update
+</pre></div>
+</div>
+<p>It’s convenient if the ROS environment variables are automatically added to your bash session every time a new shell is launched:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> <span class="s2">&quot;source /opt/ros/kinetic/setup.bash&quot;</span> &gt;&gt; ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</pre></div>
+</div>
+<p>If you have more than one ROS distribution installed, ~/.bashrc must only source the setup.bash for the version you are currently using.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">If you just want to change the environment of your current shell instead of the above you can type</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>  <span class="nb">source</span> /opt/ros/kinetic/setup.bash
+</pre></div>
+</div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Abed.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.9.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

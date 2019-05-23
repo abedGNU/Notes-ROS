@@ -1,0 +1,394 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Navigation &mdash; ROS Notes 0.9.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="1. Robot arm model" href="../20_robot_arm/robotarm.html" />
+    <link rel="prev" title="2. Gazebo" href="gazebo.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ROS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/tutorials.html">1. ROS Tutorials and wiki</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/preparing.html">2. Preparing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/overview.html">3. ROS Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/pub-sub.html">4. Publisher-Subscriber</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/launchfiles.html">5. Launch files</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Robot 3D model</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/simulators.html">1. Simulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/urdf.html">2. Unified Robot Description Format URDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/xarco.html">3. Xacro</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Mobile robot modeling and simulation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mobilerobot.html">1. Mobile robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gazebo.html">2. Gazebo</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Navigation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#hokuyo-laser-scanner">3.1. Hokuyo laser scanner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-camera">3.2. Add camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loading-maps-in-gazebo">3.3. Loading maps in gazebo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#teleoperate-the-robot">3.4. Teleoperate the robot</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Robot arm modeling and simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../20_robot_arm/robotarm.html">1. Robot arm model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20_robot_arm/industrial-robots.html">2. Industrial robots</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS computational graph</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/serv-cli.html">1. Service and Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/parameters.html">2. Parameters server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/action.html">3. ActionServer and ActionClient</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Extending ROS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/plugin.html">1. Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/nodelets.html">2. Nodelet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/rqt_plugins.html">3. Rqt plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/rvizplugin.html">4. Rviz plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/gazeboplugin.html">5. Gazebo plugins</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Embedded systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/arduino.html">1. Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/tivac.html">2. TIVA C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/stm32.html">3. STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/raspberrypi.html">4. Raspberry pi</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Computer vision</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/cameras.html">1. Cameras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/opencv.html">2. OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/pcl.html">3. Point Cloud Library (PCL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/visp.html">4. Visual Servoing Platform library ViSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/cimg.html">5. The CImg Library</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ROS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>3. Navigation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/chapters/ROS/15_mobile_robot/navigation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="navigation">
+<h1>3. Navigation<a class="headerlink" href="#navigation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hokuyo-laser-scanner">
+<h2>3.1. Hokuyo laser scanner<a class="headerlink" href="#hokuyo-laser-scanner" title="Permalink to this headline">¶</a></h2>
+<p>We will add a laser scanner to the mobile robot. The sensor behavior is already defined in gazebo as a plugin. The plugin that we will use is called <code class="docutils literal notranslate"><span class="pre">libgazebo_ros_laser.so</span></code>.
+We will create a new xacro file called <code class="docutils literal notranslate"><span class="pre">hokuyo_laser.xacro</span></code>, we define a link, a joint and add the gazebo plugin:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;gazebo reference=&quot;hokuyo_link&quot;&gt;
+&lt;material&gt;Gazebo/Blue&lt;/material&gt;
+&lt;turnGravityOff&gt;false&lt;/turnGravityOff&gt;
+&lt;sensor type=&quot;ray&quot; name=&quot;head_hokuyo_sensor&quot;&gt;
+  &lt;pose&gt;${length/2} 0 0 0 0 0&lt;/pose&gt;
+  &lt;visualize&gt;false&lt;/visualize&gt;
+  &lt;update_rate&gt;40&lt;/update_rate&gt;
+  &lt;ray&gt;
+    &lt;scan&gt;
+      &lt;horizontal&gt;
+        &lt;samples&gt;720&lt;/samples&gt;
+        &lt;resolution&gt;1&lt;/resolution&gt;
+        &lt;min_angle&gt;-1.570796&lt;/min_angle&gt;
+        &lt;max_angle&gt;1.570796&lt;/max_angle&gt;
+      &lt;/horizontal&gt;
+    &lt;/scan&gt;
+    &lt;range&gt;
+      &lt;min&gt;0.10&lt;/min&gt;
+      &lt;max&gt;10.0&lt;/max&gt;
+      &lt;resolution&gt;0.001&lt;/resolution&gt;
+    &lt;/range&gt;
+  &lt;/ray&gt;
+  &lt;plugin name=&quot;gazebo_ros_head_hokuyo_controller&quot; filename=&quot;libgazebo_ros_laser.so&quot;&gt;
+    &lt;topicName&gt;/scan&lt;/topicName&gt;
+    &lt;frameName&gt;hokuyo_link&lt;/frameName&gt;
+  &lt;/plugin&gt;
+&lt;/sensor&gt;
+&lt;/gazebo&gt;
+</pre></div>
+</div>
+<p>Create a new xacro file called <code class="docutils literal notranslate"><span class="pre">mobile_robot_with_laser.xacro</span></code>, where we include the mobile robot definition and the laser macro:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;robot name=&quot;mobile_robot&quot;
+  xmlns:xacro=&quot;http://www.ros.org/wiki/xacro&quot;&gt;
+
+  &lt;!-- ================================================================================================================= --&gt;
+  &lt;!-- INCLUDE FILES --&gt;
+  &lt;xacro:include filename=&quot;$(find mobile_car_description)/urdf/mobile_robot.xacro&quot; /&gt;
+  &lt;xacro:include filename=&quot;$(find mobile_car_description)/urdf/laser/hokuyo_laser.xacro&quot; /&gt;
+
+  &lt;!-- ================================================================================================================= --&gt;
+   &lt;!-- laser --&gt;
+  &lt;hokuyo_laser name=&quot;hokuyo_link&quot; parent=&quot;body_link&quot; length=&quot;${hokuyo_length}&quot; width=&quot;${hokuyo_width}&quot; height=&quot;${hokuyo_height}&quot; x=&quot;${hokuyo_x}&quot; y=&quot;${hokuyo_y}&quot; z=&quot;${hokuyo_z}&quot; mass=&quot;${hokuyo_mass}&quot;/&gt;
+
+  &lt;!-- ================================================================================================================= --&gt;
+
+&lt;/robot&gt;
+</pre></div>
+</div>
+<p>Open the robot in gazebo:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">mobile_car_gazebo</span> <span class="n">mobile_car_gazebo</span><span class="o">.</span><span class="n">launch</span> <span class="n">model</span><span class="p">:</span><span class="o">=</span><span class="s1">&#39;$(find mobile_car_description)/urdf/mobile_robot_with_laser.xacro&#39;</span>
+</pre></div>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">rostopic</span> <span class="pre">list</span></code> we can see the topic called <code class="docutils literal notranslate"><span class="pre">/scan</span></code> is being published. <code class="docutils literal notranslate"><span class="pre">rostopic</span> <span class="pre">echo</span> <span class="pre">/scan</span></code> to see the laser scanner value.</p>
+</div>
+<div class="section" id="add-camera">
+<h2>3.2. Add camera<a class="headerlink" href="#add-camera" title="Permalink to this headline">¶</a></h2>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;gazebo reference=&quot;camera_link&quot;&gt;
+    &lt;sensor type=&quot;camera&quot; name=&quot;camera1&quot;&gt;
+      &lt;update_rate&gt;30.0&lt;/update_rate&gt;
+      &lt;camera name=&quot;head&quot;&gt;
+        &lt;horizontal_fov&gt;1.3962634&lt;/horizontal_fov&gt;
+        &lt;image&gt;
+          &lt;width&gt;800&lt;/width&gt;
+          &lt;height&gt;800&lt;/height&gt;
+          &lt;format&gt;R8G8B8&lt;/format&gt;
+        &lt;/image&gt;
+        &lt;clip&gt;
+          &lt;near&gt;0.02&lt;/near&gt;
+          &lt;far&gt;300&lt;/far&gt;
+        &lt;/clip&gt;
+        &lt;noise&gt;
+          &lt;type&gt;gaussian&lt;/type&gt;
+          &lt;!-- Noise is sampled independently per pixel on each frame.
+               That pixel&#39;s noise value is added to each of its color
+               channels, which at that point lie in the range [0,1]. --&gt;
+          &lt;mean&gt;0.0&lt;/mean&gt;
+          &lt;stddev&gt;0.007&lt;/stddev&gt;
+        &lt;/noise&gt;
+      &lt;/camera&gt;
+      &lt;plugin name=&quot;camera_controller&quot; filename=&quot;libgazebo_ros_camera.so&quot;&gt;
+        &lt;alwaysOn&gt;true&lt;/alwaysOn&gt;
+        &lt;updateRate&gt;0.0&lt;/updateRate&gt;
+        &lt;cameraName&gt;robot/camera1&lt;/cameraName&gt;
+        &lt;imageTopicName&gt;image_raw&lt;/imageTopicName&gt;
+        &lt;cameraInfoTopicName&gt;camera_info&lt;/cameraInfoTopicName&gt;
+        &lt;frameName&gt;camera_link&lt;/frameName&gt;
+        &lt;hackBaseline&gt;0.07&lt;/hackBaseline&gt;
+        &lt;distortionK1&gt;0.0&lt;/distortionK1&gt;
+        &lt;distortionK2&gt;0.0&lt;/distortionK2&gt;
+        &lt;distortionK3&gt;0.0&lt;/distortionK3&gt;
+        &lt;distortionT1&gt;0.0&lt;/distortionT1&gt;
+        &lt;distortionT2&gt;0.0&lt;/distortionT2&gt;
+      &lt;/plugin&gt;
+    &lt;/sensor&gt;
+  &lt;/gazebo&gt;
+</pre></div>
+</div>
+<p>Show image:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosrun</span> <span class="n">image_view</span> <span class="n">image_view</span> <span class="n">image</span><span class="p">:</span><span class="o">=/</span><span class="n">robot</span><span class="o">/</span><span class="n">camera1</span><span class="o">/</span><span class="n">image_raw</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-maps-in-gazebo">
+<h2>3.3. Loading maps in gazebo<a class="headerlink" href="#loading-maps-in-gazebo" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="teleoperate-the-robot">
+<h2>3.4. Teleoperate the robot<a class="headerlink" href="#teleoperate-the-robot" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../20_robot_arm/robotarm.html" class="btn btn-neutral float-right" title="1. Robot arm model" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="gazebo.html" class="btn btn-neutral" title="2. Gazebo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Abed.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.9.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

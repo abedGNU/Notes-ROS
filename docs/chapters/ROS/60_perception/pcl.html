@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. Point Cloud Library (PCL) &mdash; ROS Notes 0.9.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="4. Visual Servoing Platform library ViSP" href="visp.html" />
+    <link rel="prev" title="2. OpenCV" href="opencv.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ROS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/tutorials.html">1. ROS Tutorials and wiki</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/preparing.html">2. Preparing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/overview.html">3. ROS Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/pub-sub.html">4. Publisher-Subscriber</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/launchfiles.html">5. Launch files</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Robot 3D model</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/simulators.html">1. Simulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/urdf.html">2. Unified Robot Description Format URDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/xarco.html">3. Xacro</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Mobile robot modeling and simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../15_mobile_robot/mobilerobot.html">1. Mobile robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_mobile_robot/gazebo.html">2. Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_mobile_robot/navigation.html">3. Navigation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Robot arm modeling and simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../20_robot_arm/robotarm.html">1. Robot arm model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20_robot_arm/industrial-robots.html">2. Industrial robots</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS computational graph</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/serv-cli.html">1. Service and Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/parameters.html">2. Parameters server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/action.html">3. ActionServer and ActionClient</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Extending ROS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/plugin.html">1. Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/nodelets.html">2. Nodelet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/rqt_plugins.html">3. Rqt plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/rvizplugin.html">4. Rviz plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/gazeboplugin.html">5. Gazebo plugins</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Embedded systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/arduino.html">1. Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/tivac.html">2. TIVA C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/stm32.html">3. STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/raspberrypi.html">4. Raspberry pi</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Computer vision</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cameras.html">1. Cameras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="opencv.html">2. OpenCV</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. Point Cloud Library (PCL)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pcl-tools">3.1. PCL tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#downsample-the-point-cloud-using-the-pcl-voxel-grid">3.1.1. Downsample the point cloud using the <code class="docutils literal notranslate"><span class="pre">pcl_voxel_grid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#segmentation-pcl-sac-segmentation-plane">3.1.2. Segmentation <code class="docutils literal notranslate"><span class="pre">pcl_sac_segmentation_plane</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remove-outliers-pcl-outlier-removal">3.1.3. Remove outliers <code class="docutils literal notranslate"><span class="pre">pcl_outlier_removal</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compute-the-normals-pcl-normal-estimation">3.1.4. Compute the normals <code class="docutils literal notranslate"><span class="pre">pcl_normal_estimation</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mesh-a-point-cloud-pcl-marching-cubes-reconstruction">3.1.5. Mesh a point cloud <code class="docutils literal notranslate"><span class="pre">pcl_marching_cubes_reconstruction</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#plc-basics">3.2. PLC basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pcl-ros-api">3.3. PCL ROS API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visp.html">4. Visual Servoing Platform library ViSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cimg.html">5. The CImg Library</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ROS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>3. Point Cloud Library (PCL)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/chapters/ROS/60_perception/pcl.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="point-cloud-library-pcl">
+<h1>3. Point Cloud Library (<a class="reference external" href="http://www.pointclouds.org/">PCL</a>)<a class="headerlink" href="#point-cloud-library-pcl" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">References: Ros Industrial training. <a class="reference external" href="https://github.com/PointCloudLibrary/pcl/tree/master/tools">PCL_Tools</a>.</p>
+</div>
+<div class="section" id="pcl-tools">
+<h2>3.1. PCL tools<a class="headerlink" href="#pcl-tools" title="Permalink to this headline">¶</a></h2>
+<p>Publish point cloud on the topic <code class="docutils literal notranslate"><span class="pre">topic_cloud_pcd</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roscore</span>
+<span class="n">rosrun</span> <span class="n">pcl_ros</span> <span class="n">pcd_to_pointcloud</span> <span class="n">table</span><span class="o">.</span><span class="n">pcd</span> <span class="mf">0.1</span> <span class="n">_frame_id</span><span class="p">:</span><span class="o">=</span><span class="nb">map</span> <span class="n">cloud_pcd</span><span class="p">:</span><span class="o">=</span><span class="n">topic_cloud_pcd</span>
+<span class="n">rosrun</span> <span class="n">rviz</span> <span class="n">rviz</span>
+</pre></div>
+</div>
+<p>In order to see the point cloud data, add <code class="docutils literal notranslate"><span class="pre">PointCloud2</span></code> display and select the topic <code class="docutils literal notranslate"><span class="pre">topic_cloud_pcd</span></code>.</p>
+<p>Install <code class="docutils literal notranslate"><span class="pre">pcl-tools</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">pcl</span><span class="o">-</span><span class="n">tools</span>
+</pre></div>
+</div>
+<p>Point cloud data can be viewed using the command line <code class="docutils literal notranslate"><span class="pre">pcl_viewer</span></code>, this command is not part of <code class="docutils literal notranslate"><span class="pre">ROS</span></code>, so no need to run <code class="docutils literal notranslate"><span class="pre">roscore</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pcl_viewer</span> <span class="n">table</span><span class="o">.</span><span class="n">pcd</span>
+</pre></div>
+</div>
+<div class="section" id="downsample-the-point-cloud-using-the-pcl-voxel-grid">
+<h3>3.1.1. Downsample the point cloud using the <code class="docutils literal notranslate"><span class="pre">pcl_voxel_grid</span></code><a class="headerlink" href="#downsample-the-point-cloud-using-the-pcl-voxel-grid" title="Permalink to this headline">¶</a></h3>
+<p>Downsample the original point cloud using a voxel grid with a grid size of (0.05,0.05,0.05).
+In a voxel grid, all points in a single grid cube are replaced with a single point at the center of the voxel.
+This is a common method to simplify overly complex/detailed sensor data, to speed up processing steps.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pcl_voxel_grid</span> <span class="n">table</span><span class="o">.</span><span class="n">pcd</span> <span class="n">table_downsampled</span><span class="o">.</span><span class="n">pcd</span> <span class="o">-</span><span class="n">leaf</span> <span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span>
+<span class="n">pcl_viewer</span> <span class="n">table_downsampled</span><span class="o">.</span><span class="n">pcd</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="segmentation-pcl-sac-segmentation-plane">
+<h3>3.1.2. Segmentation <code class="docutils literal notranslate"><span class="pre">pcl_sac_segmentation_plane</span></code><a class="headerlink" href="#segmentation-pcl-sac-segmentation-plane" title="Permalink to this headline">¶</a></h3>
+<p>Extract the table surface, find the largest plane and extract points that belong to that plane (within a given threshold).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pcl_sac_segmentation_plane</span> <span class="n">table_downsampled</span><span class="o">.</span><span class="n">pcd</span> <span class="n">only_table</span><span class="o">.</span><span class="n">pcd</span> <span class="o">-</span><span class="n">thresh</span> <span class="mf">0.01</span>
+<span class="n">pcl_viewer</span> <span class="n">only_table</span><span class="o">.</span><span class="n">pcd</span>
+</pre></div>
+</div>
+<p>Extract the largest point-cluster not belonging to the table.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pcl_sac_segmentation_plane</span> <span class="n">table</span><span class="o">.</span><span class="n">pcd</span> <span class="n">object_on_table</span><span class="o">.</span><span class="n">pcd</span> <span class="o">-</span><span class="n">thresh</span> <span class="mf">0.01</span> <span class="o">-</span><span class="n">neg</span> <span class="mi">1</span>
+<span class="n">pcl_viewer</span> <span class="n">object_on_table</span><span class="o">.</span><span class="n">pcd</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="remove-outliers-pcl-outlier-removal">
+<h3>3.1.3. Remove outliers <code class="docutils literal notranslate"><span class="pre">pcl_outlier_removal</span></code><a class="headerlink" href="#remove-outliers-pcl-outlier-removal" title="Permalink to this headline">¶</a></h3>
+<p>For this example, a statistical method will be used for removing outliers. This is useful to clean up noisy sensor data, removing false artifacts before further processing.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pcl_outlier_removal</span> <span class="n">table</span><span class="o">.</span><span class="n">pcd</span> <span class="n">table_outlier_removal</span><span class="o">.</span><span class="n">pcd</span> <span class="o">-</span><span class="n">method</span> <span class="n">statistical</span>
+<span class="n">pcl_viewer</span> <span class="n">table_outlier_removal</span><span class="o">.</span><span class="n">pcd</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="compute-the-normals-pcl-normal-estimation">
+<h3>3.1.4. Compute the normals <code class="docutils literal notranslate"><span class="pre">pcl_normal_estimation</span></code><a class="headerlink" href="#compute-the-normals-pcl-normal-estimation" title="Permalink to this headline">¶</a></h3>
+<p>This example estimates the local surface normal (perpendicular) vectors at each point.
+For each point, the algorithm uses nearby points (within the specified radius) to fit a plane and calculate the normal vector.
+Zoom in to view the normal vectors in more detail.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pcl_normal_estimation</span> <span class="n">only_table</span><span class="o">.</span><span class="n">pcd</span> <span class="n">table_normals</span><span class="o">.</span><span class="n">pcd</span> <span class="o">-</span><span class="n">radius</span> <span class="mf">0.1</span>
+<span class="n">pcl_viewer</span> <span class="n">table_normals</span><span class="o">.</span><span class="n">pcd</span> <span class="o">-</span><span class="n">normals</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mesh-a-point-cloud-pcl-marching-cubes-reconstruction">
+<h3>3.1.5. Mesh a point cloud <code class="docutils literal notranslate"><span class="pre">pcl_marching_cubes_reconstruction</span></code><a class="headerlink" href="#mesh-a-point-cloud-pcl-marching-cubes-reconstruction" title="Permalink to this headline">¶</a></h3>
+<p>Point cloud data is often unstructured, but sometimes processing algorithms need to operate on a more structured surface mesh.
+This example uses the “marching cubes” algorithm to construct a surface mesh that approximates the point cloud data.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pcl_marching_cubes_reconstruction</span> <span class="n">table_normals</span><span class="o">.</span><span class="n">pcd</span> <span class="n">table_mesh</span><span class="o">.</span><span class="n">vtk</span> <span class="o">-</span><span class="n">grid_res</span> <span class="mi">20</span>
+<span class="n">pcl_viewer</span> <span class="n">table_mesh</span><span class="o">.</span><span class="n">vtk</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="plc-basics">
+<h2>3.2. PLC basics<a class="headerlink" href="#plc-basics" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="pcl-ros-api">
+<h2>3.3. PCL ROS API<a class="headerlink" href="#pcl-ros-api" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="visp.html" class="btn btn-neutral float-right" title="4. Visual Servoing Platform library ViSP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="opencv.html" class="btn btn-neutral" title="2. OpenCV" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Abed.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.9.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

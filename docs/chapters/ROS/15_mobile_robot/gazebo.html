@@ -1,0 +1,469 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Gazebo &mdash; ROS Notes 0.9.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="3. Navigation" href="navigation.html" />
+    <link rel="prev" title="1. Mobile robot" href="mobilerobot.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ROS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/tutorials.html">1. ROS Tutorials and wiki</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/preparing.html">2. Preparing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/overview.html">3. ROS Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/pub-sub.html">4. Publisher-Subscriber</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/launchfiles.html">5. Launch files</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Robot 3D model</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/simulators.html">1. Simulators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/urdf.html">2. Unified Robot Description Format URDF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../10_robot_modeling/xarco.html">3. Xacro</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Mobile robot modeling and simulation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mobilerobot.html">1. Mobile robot</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Gazebo</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#launch-file">2.1. Launch file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spawn-robots">2.1.1. Spawn robots</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#service-call">2.1.1.1. Service call</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#model-database-robot-spawn-method">2.1.1.2. Model Database Robot Spawn Method</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#complete-launch-file">2.1.2. Complete launch file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gazebo-ros-control">2.2. gazebo_ros_control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-robot-model">2.3. Modifying robot model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#teleoperation">2.4. Teleoperation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rqt">2.4.1. Rqt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#teleop-twist-keyboard-package">2.4.2. teleop_twist_keyboard package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="navigation.html">3. Navigation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Robot arm modeling and simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../20_robot_arm/robotarm.html">1. Robot arm model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20_robot_arm/industrial-robots.html">2. Industrial robots</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS computational graph</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/serv-cli.html">1. Service and Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/parameters.html">2. Parameters server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/action.html">3. ActionServer and ActionClient</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Extending ROS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/plugin.html">1. Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/nodelets.html">2. Nodelet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/rqt_plugins.html">3. Rqt plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/rvizplugin.html">4. Rviz plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/gazeboplugin.html">5. Gazebo plugins</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Embedded systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/arduino.html">1. Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/tivac.html">2. TIVA C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/stm32.html">3. STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/raspberrypi.html">4. Raspberry pi</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Computer vision</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/cameras.html">1. Cameras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/opencv.html">2. OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/pcl.html">3. Point Cloud Library (PCL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/visp.html">4. Visual Servoing Platform library ViSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/cimg.html">5. The CImg Library</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ROS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>2. Gazebo</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/chapters/ROS/15_mobile_robot/gazebo.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gazebo">
+<h1>2. Gazebo<a class="headerlink" href="#gazebo" title="Permalink to this headline">¶</a></h1>
+<p>In order to simulate and control the robot with gazebo we need to add some tags to the urdf files.</p>
+<p>Create a package that depend on the robot model, <code class="docutils literal notranslate"><span class="pre">mobile_car_description</span></code> called <code class="docutils literal notranslate"><span class="pre">mobile_car_gazebo</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catkin_create_pkg</span> <span class="n">mobile_car_gazebo</span> <span class="n">gazebo_msgs</span> <span class="n">gazebo_plugins</span> <span class="n">gazebo_ros</span> <span class="n">gazebo_ros_control</span> <span class="n">mobile_car_description</span>
+<span class="n">mkdir</span> <span class="n">launch</span>
+</pre></div>
+</div>
+<div class="section" id="launch-file">
+<h2>2.1. Launch file<a class="headerlink" href="#launch-file" title="Permalink to this headline">¶</a></h2>
+<p>In order to simulate the robot in <a class="reference external" href="http://gazebosim.org/tutorials">Gazebo</a> we need to open a world file. In this example we open the <code class="docutils literal notranslate"><span class="pre">empty_world.world</span></code> already defined in the package <code class="docutils literal notranslate"><span class="pre">gazebo_ros</span></code> with default values.</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- We resume the logic in empty_world.launch --&gt;
+&lt;include file=&quot;$(find gazebo_ros)/launch/empty_world.launch&quot;&gt;
+  &lt;arg name=&quot;world_name&quot; value=&quot;worlds/empty_world.world&quot;/&gt; &lt;!-- Note: the world_name is with respect to GAZEBO_RESOURCE_PATH environmental variable --&gt;
+  &lt;arg name=&quot;paused&quot; value=&quot;false&quot;/&gt;
+  &lt;arg name=&quot;use_sim_time&quot; value=&quot;true&quot;/&gt;
+  &lt;arg name=&quot;gui&quot; value=&quot;true&quot;/&gt;
+  &lt;arg name=&quot;recording&quot; value=&quot;false&quot;/&gt;
+  &lt;arg name=&quot;debug&quot; value=&quot;false&quot;/&gt;
+&lt;/include&gt;
+</pre></div>
+</div>
+<p>World files are <code class="docutils literal notranslate"><span class="pre">SDF</span></code> files (xml files).</p>
+<div class="section" id="spawn-robots">
+<h3>2.1.1. Spawn robots<a class="headerlink" href="#spawn-robots" title="Permalink to this headline">¶</a></h3>
+<p>There are two ways to launch (<code class="docutils literal notranslate"><span class="pre">spawn</span></code>) your URDF-based robot into Gazebo using roslaunch:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">ROS Service Call Spawn Method:</p>
+<blockquote>
+<div><p>The first method keeps your robot’s ROS packages more portable between computers and repository check outs. It allows you to keep your robot’s location relative to a ROS package path, but also requires you to make a ROS service call using a small (python) script.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Model Database Method:</p>
+<blockquote>
+<div><p>The second method allows you to include your robot within the .world file, which seems cleaner and more convenient but requires you to add your robot to the Gazebo model database by setting an environment variable.</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<div class="section" id="service-call">
+<h4>2.1.1.1. Service call<a class="headerlink" href="#service-call" title="Permalink to this headline">¶</a></h4>
+<p>This method uses a small python script called spawn_model to make a service call request to the gazebo_ros ROS node (named simply “gazebo” in the rostopic namespace) to add a custom URDF into Gazebo. The spawn_model script is located within the gazebo_ros package. You can use this script in the following way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>rosrun gazebo_ros spawn_model -file `rospack find MYROBOT_description`/urdf/MYROBOT.urdf -urdf -x 0 -y 0 -z 1 -model MYROBOT
+</pre></div>
+</div>
+<p>To see all of the available arguments for spawn_model including namespaces, trimesh properties, joint positions and RPY orientation run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosrun</span> <span class="n">gazebo_ros</span> <span class="n">spawn_model</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+<p>In launch file:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- Spawn a robot into Gazebo --&gt;
+&lt;node name=&quot;spawn_urdf&quot; pkg=&quot;gazebo_ros&quot; type=&quot;spawn_model&quot; args=&quot;-file $(find baxter_description)/urdf/baxter.urdf -urdf -z 1 -model baxter&quot; /&gt;
+</pre></div>
+</div>
+<p>Or using xarco model:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- Convert an xacro and put on parameter server --&gt;
+&lt;param name=&quot;robot_description&quot; command=&quot;$(find xacro)/xacro --inorder $(find pr2_description)/robots/pr2.urdf.xacro&quot; /&gt;
+
+&lt;!-- Spawn a robot into Gazebo --&gt;
+&lt;node name=&quot;spawn_urdf&quot; pkg=&quot;gazebo_ros&quot; type=&quot;spawn_model&quot; args=&quot;-param robot_description -urdf -model pr2&quot; /&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="model-database-robot-spawn-method">
+<h4>2.1.1.2. Model Database Robot Spawn Method<a class="headerlink" href="#model-database-robot-spawn-method" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="complete-launch-file">
+<h3>2.1.2. Complete launch file<a class="headerlink" href="#complete-launch-file" title="Permalink to this headline">¶</a></h3>
+<p>Create a launch file in the package <code class="docutils literal notranslate"><span class="pre">mobile_car_gazebo</span></code> called <code class="docutils literal notranslate"><span class="pre">mobile_car_gazebo.launch</span></code>:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;launch&gt;
+  &lt;arg name=&quot;paused&quot; default=&quot;false&quot;/&gt;
+  &lt;arg name=&quot;use_sim_time&quot; default=&quot;true&quot;/&gt;
+  &lt;arg name=&quot;gui&quot; default=&quot;true&quot;/&gt;
+  &lt;arg name=&quot;recording&quot; default=&quot;false&quot;/&gt;
+  &lt;arg name=&quot;debug&quot; default=&quot;false&quot;/&gt;
+
+  &lt;include file=&quot;$(find gazebo_ros)/launch/empty_world.launch&quot;&gt;
+    &lt;arg name=&quot;debug&quot; value=&quot;$(arg debug)&quot; /&gt;
+    &lt;arg name=&quot;gui&quot; value=&quot;$(arg gui)&quot; /&gt;
+    &lt;arg name=&quot;paused&quot; value=&quot;$(arg paused)&quot;/&gt;
+    &lt;arg name=&quot;use_sim_time&quot; value=&quot;$(arg use_sim_time)&quot;/&gt;
+    &lt;arg name=&quot;recording&quot; value=&quot;$(arg recording)&quot;/&gt;
+  &lt;/include&gt;
+
+  &lt;!-- Convert an xacro and put on parameter server --&gt;
+  &lt;param name=&quot;robot_description&quot; command=&quot;$(find xacro)/xacro --inorder &#39;$(find mobile_car_description)/urdf/mobile_robot_with_laser.xacro&#39;&quot; /&gt;
+
+  &lt;node name=&quot;joint_state_publisher&quot; pkg=&quot;joint_state_publisher&quot; type=&quot;joint_state_publisher&quot;&gt;&lt;/node&gt;
+
+  &lt;node pkg=&quot;robot_state_publisher&quot; type=&quot;robot_state_publisher&quot; name=&quot;robot_state_publisher&quot; output=&quot;screen&quot;&gt;
+    &lt;param name=&quot;publish_frequency&quot; type=&quot;double&quot; value=&quot;50.0&quot; /&gt;
+  &lt;/node&gt;
+
+  &lt;!-- Spawn a robot into Gazebo by running a python script called spawn_model--&gt;
+  &lt;node name=&quot;urdf_spawner&quot; pkg=&quot;gazebo_ros&quot; type=&quot;spawn_model&quot; respawn=&quot;false&quot; output=&quot;screen&quot; args=&quot;-urdf -model mobile_robot -param robot_description&quot;/&gt;
+
+&lt;/launch&gt;
+</pre></div>
+</div>
+<p>Run the launh file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">mobile_car_gazebo</span> <span class="n">mobile_car_gazebo</span><span class="o">.</span><span class="n">launch</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="gazebo-ros-control">
+<h2>2.2. gazebo_ros_control<a class="headerlink" href="#gazebo-ros-control" title="Permalink to this headline">¶</a></h2>
+<p>In order to simulate the robot we need to add a controller.The plugin <code class="docutils literal notranslate"><span class="pre">gazebo_ros_control</span></code> plugin can load different libraries. In the following code, <code class="docutils literal notranslate"><span class="pre">libgazebo_ros_control.so</span></code> is loaded:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">gazebo</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">plugin</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;gazebo_ros_control&quot;</span> <span class="n">filename</span><span class="o">=</span><span class="s2">&quot;libgazebo_ros_control.so&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">robotNamespace</span><span class="o">&gt;/</span><span class="n">MYROBOT</span><span class="o">&lt;/</span><span class="n">robotNamespace</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">robotSimType</span><span class="o">&gt;</span><span class="n">gazebo_ros_control</span><span class="o">/</span><span class="n">DefaultRobotHWSim</span><span class="o">&lt;/</span><span class="n">robotSimType</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">plugin</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">gazebo</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The gazebo_ros_control &lt;plugin&gt; tag also has the following optional child elements:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">&lt;robotNamespace&gt;</span></code> The ROS namespace to be used for this instance of the plugin, defaults to robot name in URDF/SDF</li>
+<li><code class="docutils literal notranslate"><span class="pre">&lt;controlPeriod&gt;</span></code> The period of the controller update (in seconds), defaults to Gazebo’s period</li>
+<li><code class="docutils literal notranslate"><span class="pre">&lt;robotParam&gt;</span></code> The location of the robot_description (URDF) on the parameter server, defaults to ‘/robot_description’</li>
+<li><code class="docutils literal notranslate"><span class="pre">&lt;robotSimType&gt;</span></code> The pluginlib name of a custom robot sim interface to be used (see below for more details), defaults to ‘DefaultRobotHWSim’. The default behavior provides the following <code class="docutils literal notranslate"><span class="pre">ros_control</span></code> interfaces:<ul>
+<li>hardware_interface::JointStateInterface</li>
+<li>hardware_interface::EffortJointInterface</li>
+<li>hardware_interface::VelocityJointInterface - not fully implemented</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="modifying-robot-model">
+<h2>2.3. Modifying robot model<a class="headerlink" href="#modifying-robot-model" title="Permalink to this headline">¶</a></h2>
+<p>Add the follwing plugin to the robot model in <code class="docutils literal notranslate"><span class="pre">mobile_robot.xacro</span></code> in the package <code class="docutils literal notranslate"><span class="pre">mobile_car_description</span></code>:</p>
+<div class="code xml highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!-- Differential drive controller  --&gt;
+&lt;gazebo&gt;
+  &lt;plugin name=&quot;differential_drive_controller&quot; filename=&quot;libgazebo_ros_diff_drive.so&quot;&gt;
+
+    &lt;rosDebugLevel&gt;Debug&lt;/rosDebugLevel&gt;
+    &lt;publishWheelTF&gt;false&lt;/publishWheelTF&gt;
+    &lt;robotNamespace&gt;/&lt;/robotNamespace&gt;
+    &lt;publishTf&gt;1&lt;/publishTf&gt;
+    &lt;publishWheelJointState&gt;false&lt;/publishWheelJointState&gt;
+    &lt;alwaysOn&gt;true&lt;/alwaysOn&gt;
+    &lt;updateRate&gt;100.0&lt;/updateRate&gt;
+
+    &lt;leftJoint&gt;left_wheel_joint&lt;/leftJoint&gt;
+    &lt;rightJoint&gt;right_wheel_joint&lt;/rightJoint&gt;
+
+    &lt;wheelSeparation&gt;${base_width}&lt;/wheelSeparation&gt;
+    &lt;wheelDiameter&gt;${2*wheel_radius}&lt;/wheelDiameter&gt;
+    &lt;broadcastTF&gt;1&lt;/broadcastTF&gt;
+    &lt;wheelTorque&gt;30&lt;/wheelTorque&gt;
+    &lt;wheelAcceleration&gt;1.8&lt;/wheelAcceleration&gt;
+    &lt;commandTopic&gt;cmd_vel&lt;/commandTopic&gt;
+    &lt;odometryFrame&gt;odom&lt;/odometryFrame&gt;
+    &lt;odometryTopic&gt;odom&lt;/odometryTopic&gt;
+    &lt;robotBaseFrame&gt;base_link&lt;/robotBaseFrame&gt;
+
+  &lt;/plugin&gt;
+
+&lt;/gazebo&gt;
+</pre></div>
+</div>
+<p>Different parameters have to be add to the plugin. The most important is <code class="docutils literal notranslate"><span class="pre">commandTopic</span></code> where we tell the controller to listen to <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> topic.</p>
+</div>
+<div class="section" id="teleoperation">
+<h2>2.4. Teleoperation<a class="headerlink" href="#teleoperation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rqt">
+<h3>2.4.1. Rqt<a class="headerlink" href="#rqt" title="Permalink to this headline">¶</a></h3>
+<p>Open rqt node, then use the plugin robot steering  to publish the robot speed on <code class="docutils literal notranslate"><span class="pre">cmd_vel</span></code> topic.</p>
+</div>
+<div class="section" id="teleop-twist-keyboard-package">
+<h3>2.4.2. teleop_twist_keyboard package<a class="headerlink" href="#teleop-twist-keyboard-package" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="navigation.html" class="btn btn-neutral float-right" title="3. Navigation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="mobilerobot.html" class="btn btn-neutral" title="1. Mobile robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Abed.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.9.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

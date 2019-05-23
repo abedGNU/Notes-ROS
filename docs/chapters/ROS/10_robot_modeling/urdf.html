@@ -1,0 +1,604 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. Unified Robot Description Format URDF &mdash; ROS Notes 0.9.0 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="3. Xacro" href="xarco.html" />
+    <link rel="prev" title="1. Simulators" href="simulators.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> ROS Notes
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.9
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/tutorials.html">1. ROS Tutorials and wiki</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/preparing.html">2. Preparing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/overview.html">3. ROS Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/pub-sub.html">4. Publisher-Subscriber</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00_getting_started/launchfiles.html">5. Launch files</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Robot 3D model</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="simulators.html">1. Simulators</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Unified Robot Description Format URDF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#launch-file">2.1. Launch file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#urdf-basics">2.2. URDF basics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#robot">2.2.1. Robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#link">2.2.2. Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#joint">2.2.3. Joint</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tansmission">2.2.4. Tansmission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gazebo">2.2.5. Gazebo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-properties">2.2.6. Other properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-robot-model-example">2.3. Complete Robot model example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#joint-and-frame-definition">2.3.1. Joint and frame definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#check-urdf-model">2.3.2. Check URDF model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visual-aspect-and-mesh">2.3.3. Visual aspect and mesh</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="xarco.html">3. Xacro</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Mobile robot modeling and simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../15_mobile_robot/mobilerobot.html">1. Mobile robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_mobile_robot/gazebo.html">2. Gazebo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../15_mobile_robot/navigation.html">3. Navigation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Robot arm modeling and simulation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../20_robot_arm/robotarm.html">1. Robot arm model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../20_robot_arm/industrial-robots.html">2. Industrial robots</a></li>
+</ul>
+<p class="caption"><span class="caption-text">ROS computational graph</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/serv-cli.html">1. Service and Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/parameters.html">2. Parameters server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../25_computation_graph/action.html">3. ActionServer and ActionClient</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Extending ROS</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/plugin.html">1. Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/nodelets.html">2. Nodelet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/rqt_plugins.html">3. Rqt plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/rvizplugin.html">4. Rviz plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../30_plugins/gazeboplugin.html">5. Gazebo plugins</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Embedded systems</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/arduino.html">1. Arduino</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/tivac.html">2. TIVA C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/stm32.html">3. STM32</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../50_MCU/raspberrypi.html">4. Raspberry pi</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Computer vision</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/cameras.html">1. Cameras</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/opencv.html">2. OpenCV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/pcl.html">3. Point Cloud Library (PCL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/visp.html">4. Visual Servoing Platform library ViSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../60_perception/cimg.html">5. The CImg Library</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ROS Notes</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>2. Unified Robot Description Format URDF</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/chapters/ROS/10_robot_modeling/urdf.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="unified-robot-description-format-urdf">
+<h1>2. Unified Robot Description Format <a class="reference external" href="wiki.ros.org/urdf">URDF</a><a class="headerlink" href="#unified-robot-description-format-urdf" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Refer to <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials">URDF-Tutorials</a> and clone the <a class="reference external" href="https://github.com/ros/urdf_tutorial">URDF-Tutorials-repo</a> if you follow the official tutorial</p>
+<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ros</span><span class="o">/</span><span class="n">urdf_tutorial</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+<p>In this chapter we will create a model of Epson SCARA Robot.</p>
+<p>In the workspace in the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory create a folder called Robots, where we will put all robot description packages.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">navigate</span> <span class="n">to</span> <span class="n">src</span>
+<span class="n">mkdir</span> <span class="n">Robots</span>
+
+<span class="n">catkin_create_pkg</span> <span class="n">epson_g3_description</span> <span class="n">geometry_msgs</span> <span class="n">urdf</span> <span class="n">rviz</span> <span class="n">xacro</span>
+
+<span class="n">cd</span> <span class="n">epson_g3_description</span>
+
+<span class="n">mkdir</span> <span class="n">urdf</span> <span class="n">scripts</span> <span class="n">rviz</span>
+</pre></div>
+</div>
+<p>Back to the workspace and compile the packages.</p>
+<div class="section" id="launch-file">
+<h2>2.1. Launch file<a class="headerlink" href="#launch-file" title="Permalink to this headline">¶</a></h2>
+<p>The following launch file is taken from <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials">URDF-Tutorials</a>. It have different parameters that allow it to execute different robot models.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">display.launch from urdf_tutorial</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;model&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find urdf_tutorial)/urdf/01-myfirst.urdf&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;gui&quot;</span> <span class="na">default=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;rvizconfig&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find urdf_tutorial)/rviz/urdf.rviz&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;robot_description&quot;</span> <span class="na">command=</span><span class="s">&quot;$(find xacro)/xacro --inorder $(arg model)&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;use_gui&quot;</span> <span class="na">value=</span><span class="s">&quot;$(arg gui)&quot;</span><span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="na">pkg=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="na">type=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;robot_state_publisher&quot;</span> <span class="na">pkg=</span><span class="s">&quot;robot_state_publisher&quot;</span> <span class="na">type=</span><span class="s">&quot;state_publisher&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;rviz&quot;</span> <span class="na">pkg=</span><span class="s">&quot;rviz&quot;</span> <span class="na">type=</span><span class="s">&quot;rviz&quot;</span> <span class="na">args=</span><span class="s">&quot;-d $(arg rvizconfig)&quot;</span> <span class="na">required=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/launch&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>It execute 3 nodes: <a class="reference external" href="http://wiki.ros.org/rviz">rviz</a>, <a class="reference external" href="http://wiki.ros.org/joint_state_publisher">joint_state_publisher</a>, <a class="reference external" href="http://wiki.ros.org/robot_state_publisher/Tutorials">state_publisher</a>. In the launch file are present 2 parameters <code class="docutils literal notranslate"><span class="pre">robot_description</span></code> and <code class="docutils literal notranslate"><span class="pre">use_gui</span></code> that are need by the two nodes``joint_state_publisher`` and <code class="docutils literal notranslate"><span class="pre">state_publisher</span></code>. There are also 3 arguments with default values, one of them is full name of the urdf file.</p>
+<p>The node <code class="docutils literal notranslate"><span class="pre">joint_state_publisher</span></code> read the urdf file from the parameter <code class="docutils literal notranslate"><span class="pre">robot_description</span></code> finds all of the non-fixed joints and publishes a <code class="docutils literal notranslate"><span class="pre">sensor_msgs/JointState</span></code> message with all those joints defined on the topic <code class="docutils literal notranslate"><span class="pre">/joint_states</span></code>. We set by default the parameter <code class="docutils literal notranslate"><span class="pre">use_gui</span></code> to true, so when the node is executed it will show a window/widget with sliders that let us control the robot joints.</p>
+<p>The node <code class="docutils literal notranslate"><span class="pre">state_publisher</span></code> uses the URDF specified by the parameter <code class="docutils literal notranslate"><span class="pre">robot_description</span></code> and the joint positions from the topic <code class="docutils literal notranslate"><span class="pre">/joint_states</span></code> to calculate the forward kinematics of the robot and publish the results via <code class="docutils literal notranslate"><span class="pre">tf</span></code>.</p>
+<p>Launch the <code class="docutils literal notranslate"><span class="pre">display.launch</span></code> file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">urdf_tutorial</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span> <span class="n">model</span><span class="p">:</span><span class="o">=</span><span class="n">urdf</span><span class="o">/</span><span class="mi">01</span><span class="o">-</span><span class="n">myfirst</span><span class="o">.</span><span class="n">urdf</span>
+</pre></div>
+</div>
+<p>Or independently from the working direcory</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">urdf_tutorial</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span> <span class="n">model</span><span class="p">:</span><span class="o">=</span><span class="s1">&#39;$(find urdf_tutorial)/urdf/01-myfirst.urdf&#39;</span>
+</pre></div>
+</div>
+<p>In this case the file name is the same of the default value. So in this case it can be omitted</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">urdf_tutorial</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span>
+</pre></div>
+</div>
+<p>Rviz files can be deleted from the launch file if you don’t have them. They can be created from rviz later. If there is no rviz file, Rviz will not show the frames neither the robot neither select the right <code class="docutils literal notranslate"><span class="pre">Fixed</span> <span class="pre">Frame</span></code>.</p>
+<p>We will modify launch file from the tutorial in the followingway:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">display.launch</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;launch&gt;</span>
+
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;model&quot;</span> <span class="na">default=</span><span class="s">&quot;$(find epson_g3_description)/urdf/scara.urdf&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;arg</span> <span class="na">name=</span><span class="s">&quot;gui&quot;</span> <span class="na">default=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;robot_description&quot;</span> <span class="na">textfile=</span><span class="s">&quot;$(find epson_g3_description)/urdf/scara.urdf&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">&quot;use_gui&quot;</span> <span class="na">value=</span><span class="s">&quot;$(arg gui)&quot;</span><span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="na">pkg=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="na">type=</span><span class="s">&quot;joint_state_publisher&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;robot_state_publisher&quot;</span> <span class="na">pkg=</span><span class="s">&quot;robot_state_publisher&quot;</span> <span class="na">type=</span><span class="s">&quot;state_publisher&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;node</span> <span class="na">name=</span><span class="s">&quot;rviz&quot;</span> <span class="na">pkg=</span><span class="s">&quot;rviz&quot;</span> <span class="na">type=</span><span class="s">&quot;rviz&quot;</span> <span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/launch&gt;</span>
+</pre></div>
+</div>
+</div>
+<p><a class="reference download internal" download="" href="../../../_downloads/a0129ecf3ad31bf73a04966c8b46c9b3/display.launch"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">display.launch</span></code></a></p>
+<p>Basically I change the package name, the urdf default name and delete the reference for rviz configuration file. We will back later to rviz configuration files.</p>
+<p>I create also a scripts folder where I will create some bash file to help me executing nodes. Simply in the bash script launch.sh there is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">epson_g3_description</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span> <span class="n">model</span><span class="p">:</span><span class="o">=</span><span class="s1">&#39;$(find epson_g3_description)/urdf/scara.urdf&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="urdf-basics">
+<h2>2.2. URDF basics<a class="headerlink" href="#urdf-basics" title="Permalink to this headline">¶</a></h2>
+<p>URDF is an xml file that describe the geometry of a robot. URDF is a tree structure with one root link. The measuring units are meters and radians.</p>
+<div class="section" id="robot">
+<h3>2.2.1. Robot<a class="headerlink" href="#robot" title="Permalink to this headline">¶</a></h3>
+<p>A robot is composed mainly from links, and joints.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;robot</span> <span class="na">name=</span><span class="s">&quot;robot_name&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;link&gt;</span>  <span class="nt">&lt;/link&gt;</span>
+  <span class="nt">&lt;link&gt;</span>  <span class="nt">&lt;/link&gt;</span>
+
+  <span class="nt">&lt;joint&gt;</span>  <span class="nt">&lt;/joint&gt;</span>
+  <span class="nt">&lt;joint&gt;</span>  <span class="nt">&lt;/joint&gt;</span>
+<span class="nt">&lt;/robot&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="link">
+<h3>2.2.2. Link<a class="headerlink" href="#link" title="Permalink to this headline">¶</a></h3>
+<p>The link element describes a rigid body with an inertia, visual features, and collision properties.</p>
+<div class="figure align-center" id="figlink" style="width: 400px">
+<img alt="../../../_images/link.png" src="../../../_images/link.png" />
+</div>
+<p>The main components of <code class="docutils literal notranslate"><span class="pre">link</span></code> tag are as follow:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;link_name&quot;</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;visual&gt;</span>
+      <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;geometry&gt;</span>
+        <span class="nt">&lt;cylinder</span> <span class="na">length=</span><span class="s">&quot;0.6&quot;</span> <span class="na">radius=</span><span class="s">&quot;0.2&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/geometry&gt;</span>
+  <span class="nt">&lt;/visual&gt;</span>
+
+  <span class="nt">&lt;collision&gt;</span>
+      <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span> <span class="nt">/&gt;</span>
+      <span class="nt">&lt;geometry&gt;</span>
+          <span class="nt">&lt;cylinder</span> <span class="na">length=</span><span class="s">&quot;0.6&quot;</span> <span class="na">radius=</span><span class="s">&quot;0.2&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/geometry&gt;</span>
+  <span class="nt">&lt;/collision&gt;</span>
+
+  <span class="nt">&lt;inertial&gt;</span>
+      <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;mass</span> <span class="na">value=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;inertia</span>
+          <span class="na">ixx=</span><span class="s">&quot;1.0&quot;</span> <span class="na">ixy=</span><span class="s">&quot;0.0&quot;</span> <span class="na">ixz=</span><span class="s">&quot;0.0&quot;</span>
+          <span class="na">iyy=</span><span class="s">&quot;1.0&quot;</span> <span class="na">iyz=</span><span class="s">&quot;0.0&quot;</span>
+          <span class="na">izz=</span><span class="s">&quot;1.0&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/inertial&gt;</span>
+<span class="nt">&lt;/link&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">visual</span></code> tag specifies the shape of the object (<code class="docutils literal notranslate"><span class="pre">box</span></code>, <code class="docutils literal notranslate"><span class="pre">cylinder</span></code>, <code class="docutils literal notranslate"><span class="pre">sphere</span></code>, <code class="docutils literal notranslate"><span class="pre">mesh</span></code>, etc.) for visualization purposes.
+Its <code class="docutils literal notranslate"><span class="pre">origin</span></code> is the reference frame of the visual element with respect to the reference frame of the link (The reference frame of the link is its joint).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">collision</span></code> can be the same as visual, or its geometry a little bit bigger. Its <code class="docutils literal notranslate"><span class="pre">origin</span></code> is the reference frame of the collision element, relative to the reference frame of the link.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">inertial</span></code> tag is need if the model is loaded in a simulator with physics engine. Its <code class="docutils literal notranslate"><span class="pre">origin</span></code> is the pose of the inertial reference frame, relative to the link reference frame. The origin of the inertial reference frame needs to be at the center of gravity. The axes of the inertial reference frame do not need to be aligned with the principal axes of the inertia.</p>
+</div>
+<div class="section" id="joint">
+<h3>2.2.3. Joint<a class="headerlink" href="#joint" title="Permalink to this headline">¶</a></h3>
+<p>The joint describe the relative motion between two links. It can be <code class="docutils literal notranslate"><span class="pre">revolute</span></code>, <code class="docutils literal notranslate"><span class="pre">continuous</span></code>, <code class="docutils literal notranslate"><span class="pre">prismatic</span></code>, <code class="docutils literal notranslate"><span class="pre">fixed</span></code>, <code class="docutils literal notranslate"><span class="pre">floating</span></code>, <code class="docutils literal notranslate"><span class="pre">planar</span></code>.</p>
+<div class="figure align-center" id="figjoint" style="width: 400px">
+<img alt="../../../_images/joint.png" src="../../../_images/joint.png" />
+</div>
+<p>Basic properties of a joint tag:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;joint_name&quot;</span> <span class="na">type=</span><span class="s">&quot;continuous&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;link1&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;link2&quot;</span><span class="nt">/&gt;</span>
+
+  <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0&quot;</span> <span class="na">rpy=</span><span class="s">&quot;0 0 0&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;1 0 0&quot;</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/joint&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">origin</span></code> is the transform from the parent link to the child link. The joint is located at the origin of the child link. So the origin is the relative position of the child frame respect to the parent frame.</p>
+<p>The joint <code class="docutils literal notranslate"><span class="pre">axis</span></code> specified in the joint frame. This is the axis of rotation for revolute joints, the axis of translation for prismatic joints, and the surface normal for planar joints. The <code class="docutils literal notranslate"><span class="pre">axis</span></code> is specified in the joint frame of reference. Fixed and floating joints do not use the <code class="docutils literal notranslate"><span class="pre">axis</span></code> field.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">joint</span></code> have other properties as <code class="docutils literal notranslate"><span class="pre">dynamics</span></code>, <code class="docutils literal notranslate"><span class="pre">limit</span></code>, etc. <code class="docutils literal notranslate"><span class="pre">Limits</span></code> are in radians for revolute joints and meters for prismatic joints and are omitted if the joint is continuous or fixed.</p>
+<p>The following image show the relationship between two joints.</p>
+<div class="figure align-center" id="figjoint-vis" style="width: 400px">
+<img alt="../../../_images/joint_vis.png" src="../../../_images/joint_vis.png" />
+</div>
+<p>The previous image is produced by the following URDF model. Note that there is no visual aspect of the links. Only joints are defined.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="nt">&lt;robot</span> <span class="na">name=</span><span class="s">&quot;origins&quot;</span><span class="nt">&gt;</span>
+
+  <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;base_link&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/link&gt;</span>
+
+  <span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;right_leg&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/link&gt;</span>
+
+  <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;base_to_right_leg&quot;</span> <span class="na">type=</span><span class="s">&quot;fixed&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;base_link&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;right_leg&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 -0.22 0.25&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;/joint&gt;</span>
+
+<span class="nt">&lt;/robot&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tansmission">
+<h3>2.2.4. Tansmission<a class="headerlink" href="#tansmission" title="Permalink to this headline">¶</a></h3>
+<p>Transmissions link actuators to joints and represents their mechanical coupling. The transmission element is an extension to the URDF robot description model that is used to describe the relationship between an actuator and a joint. This allows one to model concepts such as gear ratios and parallel linkages. A transmission transforms efforts/flow variables such that their product - power - remains constant. Multiple actuators may be linked to multiple joints through complex transmission.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;transmission</span> <span class="na">name=</span><span class="s">&quot;tran1&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;type&gt;</span>transmission_interface/SimpleTransmission<span class="nt">&lt;/type&gt;</span>
+
+  <span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;joint1&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;hardwareInterface&gt;</span>EffortJointInterface<span class="nt">&lt;/hardwareInterface&gt;</span>
+  <span class="nt">&lt;/joint&gt;</span>
+
+  <span class="nt">&lt;actuator</span> <span class="na">name=</span><span class="s">&quot;motor1&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;hardwareInterface&gt;</span>EffortJointInterface<span class="nt">&lt;/hardwareInterface&gt;</span>
+    <span class="nt">&lt;mechanicalReduction&gt;</span>1<span class="nt">&lt;/mechanicalReduction&gt;</span>
+  <span class="nt">&lt;/actuator&gt;</span>
+
+<span class="nt">&lt;/transmission&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gazebo">
+<h3>2.2.5. Gazebo<a class="headerlink" href="#gazebo" title="Permalink to this headline">¶</a></h3>
+<p>Gazebo can be add to different elements. Refer to the <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials">URDF-Tutorials</a> and <a class="reference external" href="http://www.gazebosim.org/">Gazebo</a> tutorials. In order to simulate the model correctly in <a class="reference external" href="http://www.gazebosim.org/">Gazebo</a> at least he <code class="docutils literal notranslate"><span class="pre">inertia</span></code> and <code class="docutils literal notranslate"><span class="pre">transmission</span></code> tags for all links should be defined.</p>
+</div>
+<div class="section" id="other-properties">
+<h3>2.2.6. Other properties<a class="headerlink" href="#other-properties" title="Permalink to this headline">¶</a></h3>
+<p>Refer to <a class="reference external" href="http://wiki.ros.org/urdf/XML">URDF-XML</a> and <a class="reference external" href="http://wiki.ros.org/urdf/Tutorials">URDF-Tutorials</a> for more information.</p>
+</div>
+</div>
+<div class="section" id="complete-robot-model-example">
+<h2>2.3. Complete Robot model example<a class="headerlink" href="#complete-robot-model-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="joint-and-frame-definition">
+<h3>2.3.1. Joint and frame definition<a class="headerlink" href="#joint-and-frame-definition" title="Permalink to this headline">¶</a></h3>
+<p>We will define the 3D model of Epson Scara robot G3-251s. This robot have 4 links and 3 joints.
+On link is fixed, <code class="docutils literal notranslate"><span class="pre">base_link</span></code>. Two links rotate, we will call them link1 and link2. And the last link, link3, has translation motion.</p>
+<div class="figure align-center" id="figepsong3" style="width: 400px">
+<img alt="../../../_images/g3-251s.jpg" src="../../../_images/g3-251s.jpg" />
+</div>
+<p>The mechanical drawing is shown below:</p>
+<div class="figure align-center" id="figepsonmech1" style="width: 400px">
+<img alt="../../../_images/mech1.png" src="../../../_images/mech1.png" />
+</div>
+<div class="figure align-center" id="figepsonmech2" style="width: 400px">
+<img alt="../../../_images/mech2.png" src="../../../_images/mech2.png" />
+</div>
+<div class="figure align-center" id="figepsonmech3" style="width: 400px">
+<img alt="../../../_images/mech3.png" src="../../../_images/mech3.png" />
+</div>
+<p>We will define first the links without visual aspect. Then we define the joints. The relative positions of the joints are taken from the previous images.
+As we can see, we have 2 <code class="docutils literal notranslate"><span class="pre">revolute</span></code> joints and one <code class="docutils literal notranslate"><span class="pre">prismatic</span></code>.</p>
+<p>First we define the links, without the visual aspect:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;base_link&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/link&gt;</span>
+
+<span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;link_1&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/link&gt;</span>
+
+<span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;link_2&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/link&gt;</span>
+
+<span class="nt">&lt;link</span> <span class="na">name=</span><span class="s">&quot;link_3&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/link&gt;</span>
+</pre></div>
+</div>
+<p>We define the <code class="docutils literal notranslate"><span class="pre">joint_1</span></code> between the base and link1. We can define it where we want along the rotate axis. But we will define it in the contact between link1 and the base.
+In zero position, all links open, the robot lie on the x axis of the base link. Joint1 has on offset in z of 129mm, so 0.129 m . The joint is define on the child link. Link1 rotate arround the z axis of joint1.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;link1_to_base&quot;</span> <span class="na">type=</span><span class="s">&quot;revolute&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;base_link&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;link_1&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0 0 0.129&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;limit</span> <span class="na">effort=</span><span class="s">&quot;300&quot;</span> <span class="na">velocity=</span><span class="s">&quot;0.1&quot;</span> <span class="na">lower=</span><span class="s">&quot;-3.14&quot;</span> <span class="na">upper=</span><span class="s">&quot;3.14&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+</pre></div>
+</div>
+<p>In the same way we define joint2. As you can see the dimension <code class="docutils literal notranslate"><span class="pre">a</span></code> in the image differ from model to model. We will see later how we cam parameterize the robot model. For now we take the value for the model G3-251S, that is 120 mm.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;link2_to_link1&quot;</span> <span class="na">type=</span><span class="s">&quot;revolute&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;link_1&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;link_2&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0.120 0 0&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;limit</span> <span class="na">effort=</span><span class="s">&quot;300&quot;</span> <span class="na">velocity=</span><span class="s">&quot;0.1&quot;</span> <span class="na">lower=</span><span class="s">&quot;-3.14&quot;</span> <span class="na">upper=</span><span class="s">&quot;3.14&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+</pre></div>
+</div>
+<p>The last joint, is prismatic. Link_3 slide along axis z. The stroke is 150mm.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;joint</span> <span class="na">name=</span><span class="s">&quot;link3_to_link2&quot;</span> <span class="na">type=</span><span class="s">&quot;prismatic&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;parent</span> <span class="na">link=</span><span class="s">&quot;link_2&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;child</span> <span class="na">link=</span><span class="s">&quot;link_3&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;origin</span> <span class="na">xyz=</span><span class="s">&quot;0.130 0 0&quot;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;axis</span> <span class="na">xyz=</span><span class="s">&quot;0 0 1&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;limit</span> <span class="na">effort=</span><span class="s">&quot;300&quot;</span> <span class="na">velocity=</span><span class="s">&quot;0.1&quot;</span> <span class="na">lower=</span><span class="s">&quot;0&quot;</span> <span class="na">upper=</span><span class="s">&quot;0.150&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/joint&gt;</span>
+</pre></div>
+</div>
+<p>We can use the command <code class="docutils literal notranslate"><span class="pre">check_urdf</span></code> to check if the urdf file have errors:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_urdf</span> <span class="n">scara</span><span class="o">.</span><span class="n">urdf</span>
+</pre></div>
+</div>
+<p>Run the launch file or run the script.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">roslaunch</span> <span class="n">epson_g3_description</span> <span class="n">display</span><span class="o">.</span><span class="n">launch</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="figrvizscara" style="width: 700px">
+<img alt="../../../_images/scara.gif" src="../../../_images/scara.gif" />
+</div>
+<p><a class="reference download internal" download="" href="../../../_downloads/8b178b757c5039b1d041570e48360eb5/scara.urdf"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">scara.urdf</span></code></a></p>
+</div>
+<div class="section" id="check-urdf-model">
+<h3>2.3.2. Check URDF model<a class="headerlink" href="#check-urdf-model" title="Permalink to this headline">¶</a></h3>
+<p>Navigato to urdf direcory then:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">check_urdf</span> <span class="n">scara</span><span class="o">.</span><span class="n">urdf</span>
+</pre></div>
+</div>
+<p>If there are no errors, you will see the parents childs tree that define the robot.</p>
+<p>The command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">urdf_to_graphiz</span> <span class="n">scara</span><span class="o">.</span><span class="n">urdf</span>
+</pre></div>
+</div>
+<p>will create 2 files: <code class="docutils literal notranslate"><span class="pre">scara.gv</span></code> and <code class="docutils literal notranslate"><span class="pre">scara.pdf</span></code>.</p>
+</div>
+<div class="section" id="visual-aspect-and-mesh">
+<h3>2.3.3. Visual aspect and mesh<a class="headerlink" href="#visual-aspect-and-mesh" title="Permalink to this headline">¶</a></h3>
+<p>Espson provide CAD files in step and solidworks format. Stp can be opend on linux using FreeCad.
+We need to select every link, convert it individually in stp. Pay attention to change the measuring unit. If you convert it in mm, you will see a model 1000 tmes bigger than the real robt in rviz. URDF use meter as unit. So in FreeCad change the unit in meter then export to stp. After that open the stp file and convert it to dae. In order to convert to dae the library <code class="docutils literal notranslate"><span class="pre">pycollada</span></code> should be installed.</p>
+<p>Another way to convert to <code class="docutils literal notranslate"><span class="pre">dae</span></code>, is to convert the links in <code class="docutils literal notranslate"><span class="pre">vrml</span></code> using FreeCad, then open the <code class="docutils literal notranslate"><span class="pre">wrml</span></code> in MeshLab then convert to <code class="docutils literal notranslate"><span class="pre">dae</span></code>.</p>
+<div class="figure align-center" style="width: 700px">
+<img alt="../../../_images/freecad_dae.gif" src="../../../_images/freecad_dae.gif" />
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="xarco.html" class="btn btn-neutral float-right" title="3. Xacro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="simulators.html" class="btn btn-neutral" title="1. Simulators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Abed.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'0.9.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

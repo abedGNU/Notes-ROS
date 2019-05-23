@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>8. Service and Client &mdash; ROS Notes 0.7.0 documentation</title>
+  <title>Service and Client &mdash; ROS Notes 0.7.0 documentation</title>
   
 
   
@@ -30,9 +30,7 @@
   <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="9. Transform Frame TF" href="tf.html" />
-    <link rel="prev" title="7. Launch files" href="launchfiles.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" /> 
 
   
   <script src="../../../_static/js/modernizr.min.js"></script>
@@ -85,46 +83,34 @@
               
             
             
-              <p class="caption"><span class="caption-text">ROS</span></p>
-<ul class="current">
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../00_inst/tutorials.html">1. ROS Tutorials and wiki</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../00_inst/ros.html">2. ROS basics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../00_inst/workspace.html">3. ROS worksapce</a></li>
-<li class="toctree-l1"><a class="reference internal" href="pub-sub.html">4. Publisher-Subscriber</a></li>
-<li class="toctree-l1"><a class="reference internal" href="msg.html">5. Messages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="parameters.html">6. Parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="launchfiles.html">7. Launch files</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">8. Service and Client</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#simple-service-and-client">8.1. Simple Service and Client</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#user-messages">8.2. User messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#services">8.3. Services</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#service-node">8.3.1. Service node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#client-node">8.3.2. Client node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#build-the-package">8.3.3. Build the package</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tf.html">9. Transform Frame TF</a></li>
+<p class="caption"><span class="caption-text">Nodes and topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pub-sub.html">1. Publisher-Subscriber</a></li>
+<li class="toctree-l1"><a class="reference internal" href="launchfiles.html">2. Launch files</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Robot 3D model</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/urdf.html">1. Unified Robot Description Format URDF</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/xarco.html">2. Xacro</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/mobilerobot.html">3. Mobile robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/robotarm.html">4. Robot arm model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/industrial-robots.html">5. Industrial robots</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Simulation</span></p>
+<p class="caption"><span class="caption-text">Mobile robot</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../03_sim/rviz.html">1. Rviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/mobilerobot.html">1. Mobile robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../03_sim/gazebo.html">2. Gazebo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../03_sim/ros_control.html">3. Ros control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_sim/morse.html">4. Morse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_sim/vrep.html">5. V-Rep</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_sim/openrave.html">6. OpenRAVE</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Actions and plugins</span></p>
+<p class="caption"><span class="caption-text">Robot arm</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/robotarm.html">1. Robot arm model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/industrial-robots.html">2. Industrial robots</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Extending ROS</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/action.html">1. ActionServer and ActionClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/nodelets.html">2. Nodelet</a></li>
@@ -132,14 +118,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/rvizplugin.html">4. Rviz plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/gazeboplugin.html">5. Gazebo plugins</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ROS and Embedded systems</span></p>
+<p class="caption"><span class="caption-text">Embedded systems</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../06_MCU/arduino.html">1. Arduino</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../06_MCU/tivac.html">2. TIVA C</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../06_MCU/stm32.html">3. STM32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../06_MCU/raspberrypi.html">4. Raspberry pi</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ROS and computer vision</span></p>
+<p class="caption"><span class="caption-text">Computer vision</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../10_CV/cameras.html">1. Cameras</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../10_CV/opencv.html">2. OpenCV</a></li>
@@ -191,7 +177,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-      <li>8. Service and Client</li>
+      <li>Service and Client</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -211,25 +197,25 @@
            <div itemprop="articleBody">
             
   <div class="section" id="service-and-client">
-<h1>8. Service and Client<a class="headerlink" href="#service-and-client" title="Permalink to this headline">¶</a></h1>
+<h1>Service and Client<a class="headerlink" href="#service-and-client" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="simple-service-and-client">
-<h2>8.1. Simple Service and Client<a class="headerlink" href="#simple-service-and-client" title="Permalink to this headline">¶</a></h2>
+<h2>Simple Service and Client<a class="headerlink" href="#simple-service-and-client" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="user-messages">
-<h2>8.2. User messages<a class="headerlink" href="#user-messages" title="Permalink to this headline">¶</a></h2>
+<h2>User messages<a class="headerlink" href="#user-messages" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="services">
-<h2>8.3. Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h2>
+<h2>Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="service-node">
-<h3>8.3.1. Service node<a class="headerlink" href="#service-node" title="Permalink to this headline">¶</a></h3>
+<h3>Service node<a class="headerlink" href="#service-node" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">listing/tutorial/add_two_ints_server.cpp</span></code></p>
 </div>
 <div class="section" id="client-node">
-<h3>8.3.2. Client node<a class="headerlink" href="#client-node" title="Permalink to this headline">¶</a></h3>
+<h3>Client node<a class="headerlink" href="#client-node" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">listing/tutorial/add_two_ints_client.cpp</span></code></p>
 </div>
 <div class="section" id="build-the-package">
-<h3>8.3.3. Build the package<a class="headerlink" href="#build-the-package" title="Permalink to this headline">¶</a></h3>
+<h3>Build the package<a class="headerlink" href="#build-the-package" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">caption=CmakeLists</span> <span class="pre">with</span> <span class="pre">new</span> <span class="pre">messages</span> <span class="pre">and</span> <span class="pre">services,</span> <span class="pre">label=lstCMakeLists</span></code> <code class="docutils literal notranslate"><span class="pre">listing/tutorial/CMakeLists.txt</span></code></p>
 </div>
 </div>
@@ -240,15 +226,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="tf.html" class="btn btn-neutral float-right" title="9. Transform Frame TF" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="launchfiles.html" class="btn btn-neutral" title="7. Launch files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

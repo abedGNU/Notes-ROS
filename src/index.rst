@@ -12,17 +12,13 @@ ROS_ Robot Operating System
   :numbered:
 
   chapters/ROS/00_getting_started/tutorials
-  chapters/ROS/00_getting_started/ros
-  chapters/ROS/00_getting_started/workspace
+  chapters/ROS/00_getting_started/preparing
+  chapters/ROS/00_getting_started/overview
 
-.. toctree::
-  :caption: Nodes and topics
-  :maxdepth: 1
-  :numbered:
+  chapters/ROS/00_getting_started/pub-sub
+  chapters/ROS/00_getting_started/turtlesim
 
-  chapters/ROS/01_nodes_topics/pub-sub
-  chapters/ROS/01_nodes_topics/launchfiles
-  chapters/ROS/01_nodes_topics/turtlesim
+  chapters/ROS/00_getting_started/launchfiles
 
 .. toctree::
   :caption: Robot 3D model
@@ -40,7 +36,7 @@ ROS_ Robot Operating System
 
   chapters/ROS/15_mobile_robot/mobilerobot
   chapters/ROS/15_mobile_robot/gazebo
-  chapters/ROS/15_mobile_robot/ros_control
+  chapters/ROS/15_mobile_robot/navigation
 
 .. toctree::
   :caption: Robot arm modeling and simulation
@@ -85,10 +81,10 @@ ROS_ Robot Operating System
   :maxdepth: 1
   :numbered:
 
-  chapters/ROS/60_CV/cameras
-  chapters/ROS/60_CV/opencv
-  chapters/ROS/60_CV/pcl
-  chapters/ROS/60_CV/visp
-  chapters/ROS/60_CV/cimg
+  chapters/ROS/60_perception/cameras
+  chapters/ROS/60_perception/opencv
+  chapters/ROS/60_perception/pcl
+  chapters/ROS/60_perception/visp
+  chapters/ROS/60_perception/cimg
 
 .. _ROS: http://www.ros.org/

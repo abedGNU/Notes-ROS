@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4. Publisher-Subscriber &mdash; ROS Notes 0.7.0 documentation</title>
+  <title>1. Publisher-Subscriber &mdash; ROS Notes 0.7.0 documentation</title>
   
 
   
@@ -31,7 +31,7 @@
   <link rel="stylesheet" href="../../../_static/override.css" type="text/css" />
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="5. Messages" href="msg.html" />
+    <link rel="next" title="2. Launch files" href="launchfiles.html" />
     <link rel="prev" title="3. ROS worksapce" href="../00_inst/workspace.html" /> 
 
   
@@ -85,46 +85,44 @@
               
             
             
-              <p class="caption"><span class="caption-text">ROS</span></p>
-<ul class="current">
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../00_inst/tutorials.html">1. ROS Tutorials and wiki</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../00_inst/ros.html">2. ROS basics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../00_inst/workspace.html">3. ROS worksapce</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Publisher-Subscriber</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#simple-publisher-subscriber-ros-program">4.1. Simple Publisher-Subscriber ROS program</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#publisher-node">4.1.1. Publisher node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#subscriber-node">4.1.2. Subscriber Node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#building-nodes">4.1.3. Building nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#run-nodes">4.1.4. Run nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#useful-ros-commands">4.1.5. Useful ROS commands</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Nodes and topics</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Publisher-Subscriber</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#simple-publisher-subscriber-ros-program">1.1. Simple Publisher-Subscriber ROS program</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#publisher-node">1.1.1. Publisher node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#subscriber-node">1.1.2. Subscriber Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-nodes">1.1.3. Building nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-nodes">1.1.4. Run nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#useful-ros-commands">1.1.5. Useful ROS commands</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="msg.html">5. Messages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="parameters.html">6. Parameters</a></li>
-<li class="toctree-l1"><a class="reference internal" href="launchfiles.html">7. Launch files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="serv-cli.html">8. Service and Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tf.html">9. Transform Frame TF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="launchfiles.html">2. Launch files</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Robot 3D model</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/urdf.html">1. Unified Robot Description Format URDF</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/xarco.html">2. Xacro</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/mobilerobot.html">3. Mobile robot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/robotarm.html">4. Robot arm model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/industrial-robots.html">5. Industrial robots</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Simulation</span></p>
+<p class="caption"><span class="caption-text">Mobile robot</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../03_sim/rviz.html">1. Rviz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/mobilerobot.html">1. Mobile robot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../03_sim/gazebo.html">2. Gazebo</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../03_sim/ros_control.html">3. Ros control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_sim/morse.html">4. Morse</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_sim/vrep.html">5. V-Rep</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../03_sim/openrave.html">6. OpenRAVE</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Actions and plugins</span></p>
+<p class="caption"><span class="caption-text">Robot arm</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/robotarm.html">1. Robot arm model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02_RobotModel/industrial-robots.html">2. Industrial robots</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Extending ROS</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/action.html">1. ActionServer and ActionClient</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/nodelets.html">2. Nodelet</a></li>
@@ -132,14 +130,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/rvizplugin.html">4. Rviz plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../05_ActionPlugin/gazeboplugin.html">5. Gazebo plugins</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ROS and Embedded systems</span></p>
+<p class="caption"><span class="caption-text">Embedded systems</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../06_MCU/arduino.html">1. Arduino</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../06_MCU/tivac.html">2. TIVA C</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../06_MCU/stm32.html">3. STM32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../06_MCU/raspberrypi.html">4. Raspberry pi</a></li>
 </ul>
-<p class="caption"><span class="caption-text">ROS and computer vision</span></p>
+<p class="caption"><span class="caption-text">Computer vision</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../10_CV/cameras.html">1. Cameras</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../10_CV/opencv.html">2. OpenCV</a></li>
@@ -191,7 +189,7 @@
     
       <li><a href="../../../index.html">Docs</a> &raquo;</li>
         
-      <li>4. Publisher-Subscriber</li>
+      <li>1. Publisher-Subscriber</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -211,9 +209,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="publisher-subscriber">
-<h1>4. Publisher-Subscriber<a class="headerlink" href="#publisher-subscriber" title="Permalink to this headline">¶</a></h1>
+<h1>1. Publisher-Subscriber<a class="headerlink" href="#publisher-subscriber" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="simple-publisher-subscriber-ros-program">
-<h2>4.1. Simple Publisher-Subscriber ROS program<a class="headerlink" href="#simple-publisher-subscriber-ros-program" title="Permalink to this headline">¶</a></h2>
+<h2>1.1. Simple Publisher-Subscriber ROS program<a class="headerlink" href="#simple-publisher-subscriber-ros-program" title="Permalink to this headline">¶</a></h2>
 <p>In this section we will make a package that contain 2 nodes. A publisher node (talker.cpp) and a subscriber node (listener.cpp).
 These two source files should be created in the src folder of the package.</p>
 <p>Append to the CMakeLists.txt of the package the following:</p>
@@ -226,7 +224,7 @@ These two source files should be created in the src folder of the package.</p>
 </div>
 <p>This will create two executables, talker and listener, which by default will go into package directory of your devel space, located by default at ~/catkin_ws/devel/lib/&lt;package name&gt;.</p>
 <div class="section" id="publisher-node">
-<h3>4.1.1. Publisher node<a class="headerlink" href="#publisher-node" title="Permalink to this headline">¶</a></h3>
+<h3>1.1.1. Publisher node<a class="headerlink" href="#publisher-node" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="lstpublisher">
 <div class="code-block-caption"><span class="caption-text">Publisher</span><a class="headerlink" href="#lstpublisher" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="o">%</span><span class="n">Tag</span><span class="p">(</span><span class="n">FULLTEXT</span><span class="p">)</span><span class="o">%</span>
@@ -345,7 +343,7 @@ These two source files should be created in the src folder of the package.</p>
 </div>
 </div>
 <div class="section" id="subscriber-node">
-<h3>4.1.2. Subscriber Node<a class="headerlink" href="#subscriber-node" title="Permalink to this headline">¶</a></h3>
+<h3>1.1.2. Subscriber Node<a class="headerlink" href="#subscriber-node" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="lstsubscriber">
 <div class="code-block-caption"><span class="caption-text">Subscriber</span><a class="headerlink" href="#lstsubscriber" title="Permalink to this code">¶</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
@@ -420,7 +418,7 @@ These two source files should be created in the src folder of the package.</p>
 </div>
 </div>
 <div class="section" id="building-nodes">
-<h3>4.1.3. Building nodes<a class="headerlink" href="#building-nodes" title="Permalink to this headline">¶</a></h3>
+<h3>1.1.3. Building nodes<a class="headerlink" href="#building-nodes" title="Permalink to this headline">¶</a></h3>
 <p>Packages should be stored in workspace, if no work space is present, one should be created.
 The following steps should be done:</p>
 <blockquote>
@@ -439,7 +437,7 @@ The following steps should be done:</p>
 <p>This will create two executables, talker and listener, which by default will go into package directory of your devel space, located by default at ~/catkin_ws/devel/lib/&lt;package name&gt;.</p>
 </div>
 <div class="section" id="run-nodes">
-<h3>4.1.4. Run nodes<a class="headerlink" href="#run-nodes" title="Permalink to this headline">¶</a></h3>
+<h3>1.1.4. Run nodes<a class="headerlink" href="#run-nodes" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roscore
 
 rosrun beginner_tutorials talker      <span class="o">(</span>C++<span class="o">)</span>
@@ -452,7 +450,7 @@ rosrun beginner_tutorials listener.py  <span class="o">(</span>Python<span class
 </div>
 </div>
 <div class="section" id="useful-ros-commands">
-<h3>4.1.5. Useful ROS commands<a class="headerlink" href="#useful-ros-commands" title="Permalink to this headline">¶</a></h3>
+<h3>1.1.5. Useful ROS commands<a class="headerlink" href="#useful-ros-commands" title="Permalink to this headline">¶</a></h3>
 <p>rosnode
 rostopic
 rosmsg</p>
@@ -468,7 +466,7 @@ rosmsg</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="msg.html" class="btn btn-neutral float-right" title="5. Messages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="launchfiles.html" class="btn btn-neutral float-right" title="2. Launch files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../00_inst/workspace.html" class="btn btn-neutral" title="3. ROS worksapce" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
